@@ -420,6 +420,34 @@
                 flex-direction: column;
             }
         }
+
+        /* Medicine Search Styles */
+        #bill-medicine {
+            position: relative;
+            z-index: 10;
+        }
+
+        #bill-medicine::-webkit-calendar-picker-indicator {
+            display: none !important;
+        }
+
+        datalist {
+            width: 100%;
+            background: white;
+            border-radius: 0 0 10px 10px;
+            border: 2px solid #e2e8f0;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        datalist option {
+            padding: 8px;
+            cursor: pointer;
+        }
+
+        datalist option:hover {
+            background: #f7fafc;
+        }
     </style>
 </head>
 <body>
@@ -614,7 +642,15 @@
                     <div class="form-grid">
                         <div class="form-group">
                             <label for="bill-medicine">Medicine Name *</label>
-                            <input type="text" id="bill-medicine" required placeholder="Enter medicine name">
+                            <input type="text" 
+                                   id="bill-medicine" 
+                                   list="medicine-suggestions"
+                                   required 
+                                   placeholder="Type to search medicine..."
+                                   autocomplete="off">
+                            <datalist id="medicine-suggestions">
+                                <!-- Medicine suggestions will be populated here -->
+                            </datalist>
                         </div>
                         <div class="form-group">
                             <label for="bill-quantity">Quantity *</label>
@@ -1065,6 +1101,35 @@
         displayBills();
     }
 
+    // Medicine Search Functionality
+    function updateMedicineSuggestions() {
+        const datalist = document.getElementById('medicine-suggestions');
+        datalist.innerHTML = '';
+        allMedicines.forEach(medicine => {
+            const option = document.createElement('option');
+            option.value = medicine.name;
+            option.textContent = `${medicine.name} (Stock: ${medicine.quantity})`;
+            datalist.appendChild(option);
+        });
+    }
+
+    function handleMedicineSearch(event) {
+        const searchTerm = event.target.value.toLowerCase();
+        const datalist = document.getElementById('medicine-suggestions');
+        datalist.innerHTML = '';
+        
+        const filteredMedicines = allMedicines.filter(medicine => 
+            medicine.name.toLowerCase().includes(searchTerm)
+        );
+
+        filteredMedicines.forEach(medicine => {
+            const option = document.createElement('option');
+            option.value = medicine.name;
+            option.textContent = `${medicine.name} (Stock: ${medicine.quantity})`;
+            datalist.appendChild(option);
+        });
+    }
+
     // Event listeners
     document.getElementById('search-name').addEventListener('keypress', function(e) {
         if (e.key === 'Enter') searchMedicines();
@@ -1076,10 +1141,14 @@
         if (e.key === 'Enter') searchBills();
     });
 
+    // Medicine search event listener
+    document.getElementById('bill-medicine').addEventListener('input', handleMedicineSearch);
+
     // Initialize page
     document.addEventListener('DOMContentLoaded', function() {
         fetchMedicines();
         fetchAndDisplayBills();
+        updateMedicineSuggestions();
         const today = new Date().toISOString().split('T')[0];
         document.getElementById('expiryDate').setAttribute('min', today);
     });
