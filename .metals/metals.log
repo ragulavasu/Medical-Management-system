@@ -1,0 +1,434 @@
+2025.05.26 18:16:17 INFO  Started: Metals version 1.5.3 in folders 'C:\Users\vasur\OneDrive\Desktop\big_data' for client Visual Studio Code 1.100.1.
+2025.05.26 18:20:14 WARN  no build target for: C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\models\Bill.scala
+2025.05.26 18:20:14 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\models\Bill.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:20:14 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\models\Bill.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:20:19 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\models\Bill.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:20:19 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\models\Bill.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:20:19 WARN  no build target for: C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\models\Bill.scala
+2025.05.26 18:20:20 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\models\Bill.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:20:22 INFO  time: code lens generation in 3.36s
+2025.05.26 18:20:22 INFO  time: code lens generation in 2.75s
+2025.05.26 18:20:22 INFO  time: code lens generation in 7.43s
+2025.05.26 18:20:23 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\models\Bill.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:20:35 WARN  no build target for: C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\models\Medicine.scala
+2025.05.26 18:20:35 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\models\Medicine.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:20:35 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\models\Medicine.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:20:35 WARN  Could not find semantic tokens for: file:///C:/Users/vasur/OneDrive/Desktop/big_data/src/main/scala/models/Medicine.scala
+2025.05.26 18:20:35 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\models\Medicine.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:20:35 WARN  Could not find semantic tokens for: file:///C:/Users/vasur/OneDrive/Desktop/big_data/src/main/scala/models/Medicine.scala
+2025.05.26 18:20:36 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\models\Medicine.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:20:40 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\models\Medicine.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:20:41 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\models\Medicine.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:20:41 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\models\Medicine.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:20:41 WARN  no build target for: C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\models\Medicine.scala
+2025.05.26 18:20:41 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\models\Medicine.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:20:54 WARN  no build target for: C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Billservice.scala
+2025.05.26 18:20:54 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Billservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:20:54 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Billservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:20:54 WARN  Could not find semantic tokens for: file:///C:/Users/vasur/OneDrive/Desktop/big_data/src/main/scala/services/Billservice.scala
+2025.05.26 18:20:54 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Billservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:20:54 WARN  Could not find semantic tokens for: file:///C:/Users/vasur/OneDrive/Desktop/big_data/src/main/scala/services/Billservice.scala
+2025.05.26 18:20:55 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Billservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:21:00 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Billservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:21:00 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Billservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:21:00 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Billservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:21:00 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Billservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:21:00 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Billservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:21:00 WARN  no build target for: C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Billservice.scala
+2025.05.26 18:21:01 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Billservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:21:04 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Billservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:21:14 WARN  no build target for: C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Medicineservice.scala
+2025.05.26 18:21:14 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Medicineservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:21:14 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Medicineservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:21:14 WARN  Could not find semantic tokens for: file:///C:/Users/vasur/OneDrive/Desktop/big_data/src/main/scala/services/Medicineservice.scala
+2025.05.26 18:21:14 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Medicineservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:21:14 WARN  Could not find semantic tokens for: file:///C:/Users/vasur/OneDrive/Desktop/big_data/src/main/scala/services/Medicineservice.scala
+2025.05.26 18:21:14 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Medicineservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:21:19 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Medicineservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:21:19 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Medicineservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:21:20 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Medicineservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:21:20 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Medicineservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:21:20 WARN  no build target for: C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Medicineservice.scala
+2025.05.26 18:21:20 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Medicineservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:21:20 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Medicineservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:21:38 WARN  no build target for: C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\MongoConnection.scala
+2025.05.26 18:21:38 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\MongoConnection.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:21:39 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\MongoConnection.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:21:39 WARN  Could not find semantic tokens for: file:///C:/Users/vasur/OneDrive/Desktop/big_data/src/main/scala/services/MongoConnection.scala
+2025.05.26 18:21:39 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\MongoConnection.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:21:39 WARN  Could not find semantic tokens for: file:///C:/Users/vasur/OneDrive/Desktop/big_data/src/main/scala/services/MongoConnection.scala
+2025.05.26 18:21:45 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\MongoConnection.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:21:45 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\MongoConnection.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:21:45 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\MongoConnection.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:21:45 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\MongoConnection.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:21:45 WARN  no build target for: C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\MongoConnection.scala
+2025.05.26 18:21:46 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\MongoConnection.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:21:48 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:21:48 WARN  no build target for: C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala
+2025.05.26 18:21:48 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:21:48 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:21:48 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:21:48 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:21:53 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:21:53 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:21:53 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:21:54 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:21:54 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:21:55 WARN  no build target for: C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala
+2025.05.26 18:21:55 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:21:56 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:21:57 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:21:57 WARN  no build target for: C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt
+2025.05.26 18:21:57 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:21:57 WARN  Could not find semantic tokens for: file:///C:/Users/vasur/OneDrive/Desktop/big_data/build.sbt
+2025.05.26 18:21:57 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:21:57 WARN  Could not find semantic tokens for: file:///C:/Users/vasur/OneDrive/Desktop/big_data/build.sbt
+2025.05.26 18:22:20 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:22:20 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:22:21 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:22:21 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:22:21 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:22:21 WARN  Could not find semantic tokens for: file:///C:/Users/vasur/OneDrive/Desktop/big_data/build.sbt
+2025.05.26 18:22:21 WARN  no build target for: C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt
+2025.05.26 18:22:22 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:22:21 WARN  Could not find semantic tokens for: file:///C:/Users/vasur/OneDrive/Desktop/big_data/build.sbt
+2025.05.26 18:22:31 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:22:31 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:22:31 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:22:31 WARN  Could not find semantic tokens for: file:///C:/Users/vasur/OneDrive/Desktop/big_data/build.sbt
+May 26, 2025 6:22:31 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report C:\Users\vasur\OneDrive\Desktop\big_data\.metals\.reports\metals-full\2025-05-26\r_compiler-error_18-22-31-802.md
+2025.05.26 18:22:32 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:22:31 WARN  no build target for: C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt
+2025.05.26 18:22:32 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:22:32 WARN  Could not find semantic tokens for: file:///C:/Users/vasur/OneDrive/Desktop/big_data/build.sbt
+2025.05.26 18:22:32 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:22:31 WARN  no build target for: C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt
+2025.05.26 18:22:32 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:22:32 WARN  Could not find semantic tokens for: file:///C:/Users/vasur/OneDrive/Desktop/big_data/build.sbt
+2025.05.26 18:22:32 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:22:32 WARN  no build target for: C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt
+2025.05.26 18:22:32 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:22:32 WARN  Could not find semantic tokens for: file:///C:/Users/vasur/OneDrive/Desktop/big_data/build.sbt
+2025.05.26 18:22:32 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:22:32 WARN  no build target for: C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt
+2025.05.26 18:22:32 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:22:32 WARN  Could not find semantic tokens for: file:///C:/Users/vasur/OneDrive/Desktop/big_data/build.sbt
+2025.05.26 18:22:32 WARN  no build target for: C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt
+2025.05.26 18:22:32 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:22:32 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:22:32 WARN  Could not find semantic tokens for: file:///C:/Users/vasur/OneDrive/Desktop/big_data/build.sbt
+2025.05.26 18:22:49 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:22:50 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:22:50 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:22:50 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:22:50 WARN  Could not find semantic tokens for: file:///C:/Users/vasur/OneDrive/Desktop/big_data/build.sbt
+2025.05.26 18:22:50 WARN  no build target for: C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt
+2025.05.26 18:22:50 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:22:50 WARN  Could not find semantic tokens for: file:///C:/Users/vasur/OneDrive/Desktop/big_data/build.sbt
+2025.05.26 18:22:50 WARN  no build target for: C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt
+2025.05.26 18:22:50 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:22:50 WARN  Could not find semantic tokens for: file:///C:/Users/vasur/OneDrive/Desktop/big_data/build.sbt
+2025.05.26 18:22:50 WARN  no build target for: C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt
+2025.05.26 18:22:51 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:22:50 WARN  Could not find semantic tokens for: file:///C:/Users/vasur/OneDrive/Desktop/big_data/build.sbt
+2025.05.26 18:22:55 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:22:55 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:22:55 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:22:55 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:22:56 WARN  no build target for: C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt
+2025.05.26 18:22:56 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:22:56 WARN  Could not find semantic tokens for: file:///C:/Users/vasur/OneDrive/Desktop/big_data/build.sbt
+2025.05.26 18:22:56 WARN  no build target for: C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt
+2025.05.26 18:22:56 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:22:56 WARN  Could not find semantic tokens for: file:///C:/Users/vasur/OneDrive/Desktop/big_data/build.sbt
+2025.05.26 18:23:02 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:23:11 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:24:08 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:24:08 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:24:08 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:25:05 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:25:05 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:25:05 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:25:05 WARN  Could not find semantic tokens for: file:///C:/Users/vasur/OneDrive/Desktop/big_data/build.sbt
+2025.05.26 18:25:06 WARN  no build target for: C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt
+2025.05.26 18:25:06 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:25:06 WARN  Could not find semantic tokens for: file:///C:/Users/vasur/OneDrive/Desktop/big_data/build.sbt
+2025.05.26 18:25:07 WARN  no build target for: C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt
+2025.05.26 18:25:06 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\build.sbt. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:25:06 WARN  Could not find semantic tokens for: file:///C:/Users/vasur/OneDrive/Desktop/big_data/build.sbt
+2025.05.26 18:28:34 WARN  no build target for: C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala
+2025.05.26 18:28:34 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:28:35 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:28:36 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:35:03 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:36:29 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:36:29 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:36:30 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:36:30 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:36:30 WARN  Could not find semantic tokens for: file:///C:/Users/vasur/OneDrive/Desktop/big_data/src/main/scala/Main.scala
+2025.05.26 18:36:30 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:36:30 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:36:30 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:36:31 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:36:31 WARN  no build target for: C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala
+2025.05.26 18:36:31 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:36:31 WARN  no build target for: C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala
+2025.05.26 18:36:32 WARN  no build target for: C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala
+2025.05.26 18:36:32 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:36:31 WARN  no build target for: C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala
+2025.05.26 18:36:32 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:36:31 WARN  no build target for: C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala
+2025.05.26 18:36:31 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:40:46 WARN  no build target for: C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Billservice.scala
+2025.05.26 18:40:46 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Billservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:40:47 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Billservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:40:46 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Billservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:42:38 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Billservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:42:38 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Billservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:42:38 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Billservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:42:38 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Billservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:42:38 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Billservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:42:38 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Billservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+May 26, 2025 6:42:39 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 384
+May 26, 2025 6:42:39 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 385
+May 26, 2025 6:42:39 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 386
+May 26, 2025 6:42:39 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 387
+May 26, 2025 6:42:39 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 388
+May 26, 2025 6:42:39 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 389
+2025.05.26 18:42:38 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Billservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:42:38 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Billservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:42:38 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Billservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+May 26, 2025 6:42:39 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 391
+2025.05.26 18:42:38 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Billservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:42:38 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Billservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:42:38 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Billservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+May 26, 2025 6:42:39 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 393
+May 26, 2025 6:42:39 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 394
+2025.05.26 18:42:38 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Billservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:43:00 WARN  no build target for: C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Medicineservice.scala
+2025.05.26 18:43:00 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Medicineservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:43:00 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Medicineservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:43:00 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Medicineservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+May 26, 2025 6:43:05 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleNotification
+WARNING: Notification threw an exception: {
+  "jsonrpc": "2.0",
+  "method": "metals/didFocusTextDocument",
+  "params": [
+    "vscode-chat-code-block://5ab27e03-da1b-400a-80ad-8ede6e1f08a5/response_273acc60-0520-4395-85b3-f699aadaa780/1#%7B%22references%22%3A%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22c%3A%5C%5CUsers%5C%5Cvasur%5C%5COneDrive%5C%5CDesktop%5C%5Cbig_data%5C%5Csrc%5C%5Cmain%5C%5Cscala%5C%5Cservices%5C%5CBillservice.scala%22%2C%22_sep%22%3A1%2C%22external%22%3A%22file%3A%2F%2F%2Fc%253A%2FUsers%2Fvasur%2FOneDrive%2FDesktop%2Fbig_data%2Fsrc%2Fmain%2Fscala%2Fservices%2FBillservice.scala%22%2C%22path%22%3A%22%2FC%3A%2FUsers%2Fvasur%2FOneDrive%2FDesktop%2Fbig_data%2Fsrc%2Fmain%2Fscala%2Fservices%2FBillservice.scala%22%2C%22scheme%22%3A%22file%22%7D%7D%5D%7D"
+  ]
+}
+java.nio.file.FileSystemNotFoundException: Provider "vscode-chat-code-block" not installed
+	at java.base/java.nio.file.Path.of(Path.java:212)
+	at java.base/java.nio.file.Paths.get(Paths.java:98)
+	at scala.meta.internal.mtags.MtagsEnrichments$XtensionURIMtags.toAbsolutePath(MtagsEnrichments.scala:130)
+	at scala.meta.internal.mtags.MtagsEnrichments$XtensionStringMtags.toAbsolutePath(MtagsEnrichments.scala:190)
+	at scala.meta.internal.metals.MetalsEnrichments$XtensionString.toAbsolutePath(MetalsEnrichments.scala:787)
+	at scala.meta.internal.metals.MetalsEnrichments$XtensionString.toAbsolutePath(MetalsEnrichments.scala:784)
+	at scala.meta.internal.metals.WorkspaceLspService.didFocus(WorkspaceLspService.scala:774)
+	at scala.meta.metals.lsp.DelegatingScalaService.didFocus(DelegatingScalaService.scala:42)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.lambda$recursiveFindRpcMethods$0(GenericEndpoint.java:65)
+	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.notify(GenericEndpoint.java:160)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleNotification(RemoteEndpoint.java:231)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:198)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:185)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:97)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:114)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+
+2025.05.26 18:43:18 WARN  no build target for: C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Medicineservice.scala
+2025.05.26 18:43:18 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Medicineservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:43:18 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Medicineservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:43:31 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Medicineservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:43:33 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Medicineservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:43:33 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Medicineservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:43:35 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Medicineservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:43:35 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Medicineservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:43:35 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Medicineservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:43:35 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Medicineservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+May 26, 2025 6:43:36 PM scala.meta.internal.metals.StdReporter $anonfun$create$1
+WARNING: empty definition using pc, found symbol in pc: `<none>`. (full report at: C:\Users\vasur\OneDrive\Desktop\big_data\.metals\.reports\metals-full\2025-05-26\r_empty-definition_18-43-36-246.md)
+2025.05.26 18:43:35 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Medicineservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:43:36 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Medicineservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:43:36 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Medicineservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:43:37 WARN  no build target for: C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Medicineservice.scala
+2025.05.26 18:43:37 WARN  no build target for: C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Medicineservice.scala
+2025.05.26 18:43:37 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Medicineservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:43:36 WARN  no build target for: C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Medicineservice.scala
+2025.05.26 18:43:37 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Medicineservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:43:37 WARN  no build target for: C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Medicineservice.scala
+2025.05.26 18:43:37 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Medicineservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.26 18:51:46 INFO  Shutting down server
+2025.05.26 18:51:46 INFO  shutting down Metals
+2025.05.26 18:51:46 INFO  Exiting server
+2025.05.26 18:53:33 INFO  Started: Metals version 1.5.3 in folders 'C:\Users\vasur\OneDrive\Desktop\big_data' for client Visual Studio Code 1.100.1.
+2025.05.26 18:54:59 INFO  Shutting down server
+2025.05.26 18:54:59 INFO  shutting down Metals
+2025.05.26 18:54:59 INFO  Exiting server
+2025.05.26 22:34:05 INFO  Started: Metals version 1.5.3 in folders 'C:\Users\vasur\OneDrive\Desktop\big_data' for client Visual Studio Code 1.100.1.
+2025.05.26 22:38:21 INFO  Shutting down server
+2025.05.26 22:38:21 INFO  shutting down Metals
+2025.05.26 22:38:21 INFO  Exiting server
+2025.05.27 00:12:00 INFO  Started: Metals version 1.5.3 in folders 'C:\Users\vasur\OneDrive\Desktop\big_data' for client Visual Studio Code 1.100.1.
+2025.05.27 00:12:09 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.27 00:12:11 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+May 27, 2025 12:12:11 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 1
+2025.05.27 00:12:11 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.27 00:12:12 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.27 00:12:12 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.27 00:12:12 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+May 27, 2025 12:12:13 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 9
+May 27, 2025 12:12:13 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 10
+2025.05.27 00:13:23 INFO  Shutting down server
+2025.05.27 00:13:23 INFO  shutting down Metals
+2025.05.27 00:13:23 INFO  Exiting server
+2025.05.28 13:19:57 INFO  Started: Metals version 1.5.3 in folders 'C:\Users\vasur\OneDrive\Desktop\big_data' for client Visual Studio Code 1.100.1.
+2025.05.28 13:19:58 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 13:20:05 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 13:21:50 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 13:21:53 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 13:21:56 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 13:21:56 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 13:23:53 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 13:23:54 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 13:34:27 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 13:34:29 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 14:06:49 INFO  Shutting down server
+2025.05.28 14:06:49 INFO  shutting down Metals
+2025.05.28 14:06:49 INFO  Exiting server
+2025.05.28 18:51:36 INFO  Started: Metals version 1.5.3 in folders 'C:\Users\vasur\OneDrive\Desktop\big_data' for client Visual Studio Code 1.100.1.
+2025.05.28 18:59:42 INFO  Shutting down server
+2025.05.28 18:59:42 INFO  shutting down Metals
+2025.05.28 18:59:42 INFO  Exiting server
+2025.05.28 18:59:42 ERROR Unexpected error initializing server: 
+org.eclipse.lsp4j.jsonrpc.ResponseErrorException: Request window/showMessageRequest failed with message: Canceled
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleResponse(RemoteEndpoint.java:220)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:204)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:185)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:97)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:114)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.lang.Thread.run(Thread.java:840)
+
+2025.05.28 19:01:59 INFO  Started: Metals version 1.5.3 in folders 'C:\Users\vasur\OneDrive\Desktop\big_data' for client Visual Studio Code 1.100.1.
+2025.05.28 19:02:15 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\models\Bill.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 19:02:18 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\models\Bill.scala. Using presentation compiler with project's scala-library version: 3.3.6
+May 28, 2025 7:02:18 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 1
+2025.05.28 19:02:19 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\models\Bill.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 19:02:19 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+May 28, 2025 7:02:20 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 9
+2025.05.28 19:02:20 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 19:02:19 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 19:02:20 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 19:02:23 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 19:02:45 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 19:02:45 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Billservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 19:02:45 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Billservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 19:02:45 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Billservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 19:07:55 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Billservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 19:07:55 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+May 28, 2025 7:07:56 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 38
+2025.05.28 19:07:56 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 19:07:55 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 19:07:55 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 19:09:02 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 19:09:07 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 19:12:26 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 19:12:26 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Billservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 19:12:26 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Billservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 19:12:26 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Billservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 19:12:31 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Billservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 19:12:33 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Billservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 19:13:11 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Billservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 19:13:11 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Billservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 19:13:11 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Billservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 19:13:12 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Billservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 19:13:25 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Billservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 19:13:25 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Medicineservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 19:13:25 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Medicineservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 19:13:25 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Medicineservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 19:13:48 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Medicineservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 19:14:03 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\Medicineservice.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 19:14:03 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\MongoConnection.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 19:14:03 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\MongoConnection.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 19:14:03 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\MongoConnection.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 19:14:03 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\MongoConnection.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 19:14:04 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\MongoConnection.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 19:14:04 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\MongoConnection.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 19:14:50 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\MongoConnection.scala. Using presentation compiler with project's scala-library version: 3.3.6
+Exception in thread "pool-22-thread-1" java.lang.InterruptedException
+	at scala.meta.internal.metals.FutureCancelToken.checkCanceled(FutureCancelToken.scala:29)
+	at scala.meta.internal.pc.CompilerAccess.onCompilerJobQueue$$anonfun$1(CompilerAccess.scala:244)
+	at scala.meta.internal.pc.CompilerJobQueue$Job.run(CompilerJobQueue.scala:153)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2025.05.28 19:14:50 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\MongoConnection.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 19:15:00 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\services\MongoConnection.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 19:15:00 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 19:15:01 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 19:15:00 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 19:15:23 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 19:15:33 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 19:16:16 INFO  Shutting down server
+2025.05.28 19:16:16 INFO  shutting down Metals
+2025.05.28 19:16:16 INFO  Exiting server
+2025.05.28 20:35:22 INFO  Started: Metals version 1.5.3 in folders 'C:\Users\vasur\OneDrive\Desktop\big_data' for client Visual Studio Code 1.100.1.
+2025.05.28 20:35:24 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 20:35:26 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 20:35:29 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 20:35:29 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 20:35:29 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+May 28, 2025 8:35:30 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 11
+May 28, 2025 8:35:30 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 12
+2025.05.28 20:35:53 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 20:35:53 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 20:35:54 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 20:35:57 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 20:35:57 WARN  no build target for: C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala
+2025.05.28 20:35:57 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 20:35:57 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 20:35:57 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 20:36:15 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 20:40:37 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 20:40:38 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 20:40:47 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 20:40:50 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 20:44:19 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 20:44:33 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 20:47:04 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 20:47:04 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\Main.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 20:47:16 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\models\Bill.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 20:47:16 WARN  no build target for: C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\models\Bill.scala
+2025.05.28 20:47:16 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\models\Bill.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 20:47:16 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\models\Bill.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 20:47:16 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\models\Bill.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.05.28 20:53:36 INFO  no build target found for C:\Users\vasur\OneDrive\Desktop\big_data\src\main\scala\models\Bill.scala. Using presentation compiler with project's scala-library version: 3.3.6

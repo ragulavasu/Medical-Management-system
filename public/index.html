@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicine Management System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            -webkit-backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header h1 {
+            color: #4a5568;
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .nav-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+
+        .nav-tab {
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .nav-tab:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .nav-tab.active {
+            background: linear-gradient(135deg, #48bb78, #38a169);
+            box-shadow: 0 6px 20px rgba(72, 187, 120, 0.4);
+        }
+
+        .tab-content {
+            display: none;
+            -webkit-backdrop-filter: blur(15px);
+            backdrop-filter: blur(15px);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            color: #4a5568;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: #4a5568;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .form-group input, .form-group select {
+            padding: 0.75rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .btn {
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #48bb78, #38a169);
+            color: white;
+            box-shadow: 0 4px 15px rgba(72, 187, 120, 0.3);
+        }
+
+        .btn-success:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(72, 187, 120, 0.4);
+        }
+
+        .btn-warning {
+            background: linear-gradient(135deg, #ed8936, #dd6b20);
+            color: white;
+            box-shadow: 0 4px 15px rgba(237, 137, 54, 0.3);
+        }
+
+        .btn-warning:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(237, 137, 54, 0.4);
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #f56565, #e53e3e);
+            color: white;
+            box-shadow: 0 4px 15px rgba(245, 101, 101, 0.3);
+        }
+
+        .btn-danger:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(245, 101, 101, 0.4);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+
+        .search-container {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .search-input {
+            flex: 1;
+            min-width: 250px;
+            padding: 0.75rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 25px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .table-container {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-top: 1rem;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .data-table th {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .data-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+            transition: background-color 0.3s ease;
+        }
+
+        .data-table tbody tr:hover {
+            background-color: #f7fafc;
+        }
+
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-expired {
+            background: #fed7d7;
+            color: #c53030;
+        }
+
+        .status-expiring {
+            background: #feebc8;
+            color: #dd6b20;
+        }
+
+        .status-valid {
+            background: #c6f6d5;
+            color: #2f855a;
+        }
+
+        .message {
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .message.success {
+            background: #c6f6d5;
+            color: #2f855a;
+            border: 2px solid #9ae6b4;
+        }
+
+        .message.error {
+            background: #fed7d7;
+            color: #c53030;
+            border: 2px solid #fc8181;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        .stat-label {
+            color: #4a5568;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
+        .company-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .company-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .company-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .delete-btn {
+            background: linear-gradient(135deg, #f56565, #e53e3e);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .delete-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(245, 101, 101, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 0.5rem;
+            }
+            
+            .nav-tabs {
+                padding: 0.5rem;
+            }
+            
+            .nav-tab {
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
+            }
+            
+            .tab-content {
+                padding: 1rem;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .btn-group {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .search-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🏥 Medicine Management System</h1>
+    </div>
+
+    <div class="container">
+        <!-- Navigation Tabs -->
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showTab('add-medicine')">➕ Add Medicine</button>
+            <button class="nav-tab" onclick="showTab('view-medicines')">📋 View Medicines</button>
+            <button class="nav-tab" onclick="showTab('search-medicines')">🔍 Search Medicines</button>
+            <button class="nav-tab" onclick="showTab('companies')">🏢 Companies</button>
+            <button class="nav-tab" onclick="showTab('expiry-stock')">⚠️ Expiry Check</button>
+            <button class="nav-tab" onclick="showTab('delete-medicine')">🗑️ Delete Medicine</button>
+            <button class="nav-tab" onclick="showTab('add-bill')">💰 Add Bill</button>
+            <button class="nav-tab" onclick="showTab('search-bills')">📊 View Bills</button>
+        </div>
+
+        <!-- Add Medicine Tab -->
+        <div id="add-medicine" class="tab-content active">
+            <h2 class="section-title">Add New Medicine</h2>
+            <div class="form-container">
+                <form id="add-medicine-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="name">Medicine Name *</label>
+                            <input type="text" id="name" required placeholder="Enter medicine name">
+                        </div>
+                        <div class="form-group">
+                            <label for="company">Company *</label>
+                            <input type="text" id="company" required placeholder="Enter company name">
+                        </div>
+                        <div class="form-group">
+                            <label for="quantity">Quantity *</label>
+                            <input type="number" id="quantity" min="1" required placeholder="Enter quantity">
+                        </div>
+                        <div class="form-group">
+                            <label for="expiryDate">Expiry Date *</label>
+                            <input type="date" id="expiryDate" required>
+                        </div>
+                    </div>
+                    <div class="btn-group">
+                        <button type="submit" class="btn btn-success">Add Medicine</button>
+                        <button type="reset" class="btn btn-primary">Clear Form</button>
+                    </div>
+                </form>
+                <div id="medicine-message"></div>
+            </div>
+        </div>
+
+        <!-- View Medicines Tab -->
+        <div id="view-medicines" class="tab-content">
+            <h2 class="section-title">All Medicines Inventory</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" id="total-medicines">0</div>
+                    <div class="stat-label">Total Medicines</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="expired-count">0</div>
+                    <div class="stat-label">Expired</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="expiring-count">0</div>
+                    <div class="stat-label">Expiring Soon</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="valid-count">0</div>
+                    <div class="stat-label">Valid Stock</div>
+                </div>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="fetchMedicines()">Refresh Data</button>
+            </div>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Medicine Name</th>
+                            <th>Company</th>
+                            <th>Quantity</th>
+                            <th>Expiry Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="medicine-list">
+                        <!-- Medicines will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Search Medicines Tab -->
+        <div id="search-medicines" class="tab-content">
+            <h2 class="section-title">Search Medicines</h2>
+            <div class="search-container">
+                <input type="text" id="search-name" class="search-input" placeholder="Search by medicine name...">
+                <button class="btn btn-primary" onclick="searchMedicines()">🔍 Search</button>
+                <button class="btn btn-warning" onclick="clearSearch()">Clear</button>
+            </div>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Medicine Name</th>
+                            <th>Company</th>
+                            <th>Quantity</th>
+                            <th>Expiry Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="search-results">
+                        <!-- Search results will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Companies Tab -->
+        <div id="companies" class="tab-content">
+            <h2 class="section-title">Medicine Companies</h2>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="viewCompanies()">Load Companies</button>
+            </div>
+            <div id="companies-grid" class="company-grid">
+                <!-- Companies will be populated here -->
+            </div>
+        </div>
+
+        <!-- Expiry Stock Tab -->
+        <div id="expiry-stock" class="tab-content">
+            <h2 class="section-title">Expiry Stock Management</h2>
+            <div class="btn-group">
+                <button class="btn btn-danger" onclick="viewExpiryStock()">View Expired</button>
+                <button class="btn btn-warning" onclick="viewExpiringSoon()">Expiring Soon (30 days)</button>
+                <button class="btn btn-success" onclick="viewValidStock()">Valid Stock</button>
+            </div>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Medicine Name</th>
+                            <th>Company</th>
+                            <th>Quantity</th>
+                            <th>Expiry Date</th>
+                            <th>Days Until Expiry</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="expiry-stock-list">
+                        <!-- Expiry stock will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Delete Medicine Tab -->
+        <div id="delete-medicine" class="tab-content">
+            <h2 class="section-title">Delete Medicine</h2>
+            <div class="form-container">
+                <div class="search-container">
+                    <input type="text" id="delete-search" class="search-input" placeholder="Search medicine to delete...">
+                    <button class="btn btn-primary" onclick="searchForDelete()">Search</button>
+                </div>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Medicine Name</th>
+                                <th>Company</th>
+                                <th>Quantity</th>
+                                <th>Expiry Date</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="delete-results">
+                            <!-- Delete candidates will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div id="delete-message"></div>
+        </div>
+
+        <!-- Add Bill Tab -->
+        <div id="add-bill" class="tab-content">
+            <h2 class="section-title">Create New Bill</h2>
+            <div class="form-container">
+                <form id="add-bill-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="bill-medicine">Medicine Name *</label>
+                            <input type="text" id="bill-medicine" required placeholder="Enter medicine name">
+                        </div>
+                        <div class="form-group">
+                            <label for="bill-quantity">Quantity *</label>
+                            <input type="number" id="bill-quantity" min="1" required placeholder="Enter quantity">
+                        </div>
+                        <div class="form-group">
+                            <label for="bill-price">Unit Price (rs) *</label>
+                            <input type="number" id="bill-price" step="0.01" min="0" required placeholder="Enter unit price">
+                        </div>
+                        <div class="form-group">
+                            <label for="customer-name">Customer Name</label>
+                            <input type="text" id="customer-name" placeholder="Enter customer name (optional)">
+                        </div>
+                    </div>
+                    <div class="btn-group">
+                        <button type="submit" class="btn btn-success">Create Bill</button>
+                        <button type="reset" class="btn btn-primary">Clear Form</button>
+                    </div>
+                </form>
+                <div id="bill-message"></div>
+            </div>
+        </div>
+
+        <!-- Search Bills Tab -->
+        <div id="search-bills" class="tab-content">
+            <h2 class="section-title">Bills Management</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" id="total-bills">0</div>
+                    <div class="stat-label">Total Bills</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="total-revenue">$0</div>
+                    <div class="stat-label">Total Revenue</div>
+                </div>
+            </div>
+            <div class="search-container">
+                <input type="text" id="bill-search" class="search-input" placeholder="Search bills by medicine or customer...">
+                <button class="btn btn-primary" onclick="searchBills()">🔍 Search</button>
+                <button class="btn btn-warning" onclick="clearBillSearch()">Clear</button>
+            </div>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Medicine</th>
+                            <th>Customer</th>
+                            <th>Quantity</th>
+                            <th>Unit Price</th>
+                            <th>Total Amount</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bill-list">
+                        <!-- Bills will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    // Global variables
+    let bills = [];
+    let allMedicines = [];
+
+    // Tab management
+    function showTab(tabName) {
+        const tabContents = document.querySelectorAll('.tab-content');
+        tabContents.forEach(tab => tab.classList.remove('active'));
+        const navTabs = document.querySelectorAll('.nav-tab');
+        navTabs.forEach(tab => tab.classList.remove('active'));
+        document.getElementById(tabName).classList.add('active');
+        event.target.classList.add('active');
+        if (tabName === 'view-medicines') {
+            fetchMedicines();
+        } else if (tabName === 'search-bills') {
+            fetchAndDisplayBills();
+        }
+    }
+
+    // Utility functions
+    function getDaysDifference(dateString) {
+        const expiryDate = new Date(dateString);
+        const currentDate = new Date();
+        const timeDifference = expiryDate.getTime() - currentDate.getTime();
+        return Math.ceil(timeDifference / (1000 * 3600 * 24));
+    }
+
+    function getExpiryStatus(expiryDate) {
+        const days = getDaysDifference(expiryDate);
+        if (days < 0) return { status: 'Expired', class: 'status-expired' };
+        if (days <= 30) return { status: 'Expiring Soon', class: 'status-expiring' };
+        return { status: 'Valid', class: 'status-valid' };
+    }
+
+    function showMessage(elementId, message, isError = false) {
+        const element = document.getElementById(elementId);
+        element.innerHTML = `<div class="message ${isError ? 'error' : 'success'}">${message}</div>`;
+        setTimeout(() => {
+            element.innerHTML = '';
+        }, 5000);
+    }
+
+    // Medicine management functions
+    function fetchMedicines() {
+        fetch('http://localhost:8080/medicines')
+            .then(response => {
+                if (!response.ok) throw new Error('Failed to fetch medicines');
+                return response.json();
+            })
+            .then(data => {
+                allMedicines = data;
+                displayMedicines(data);
+                updateStats(data);
+            })
+            .catch(error => {
+                console.error('Error fetching medicines:', error);
+                showMessage('medicine-message', 'Error fetching medicines: ' + error.message, true);
+            });
+    }
+
+    function displayMedicines(medicines, targetId = 'medicine-list') {
+        const medicineList = document.getElementById(targetId);
+        medicineList.innerHTML = '';
+        if (medicines.length === 0) {
+            medicineList.innerHTML = '<tr><td colspan="5" style="text-align: center; padding: 2rem; color: #666;">No medicines found</td></tr>';
+            return;
+        }
+        medicines.forEach((medicine) => {
+            const statusInfo = getExpiryStatus(medicine.expiryDate);
+            const days = getDaysDifference(medicine.expiryDate);
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td style="font-weight: 600;">${medicine.name}</td>
+                <td>${medicine.company}</td>
+                <td><span style="background: #e2e8f0; padding: 0.25rem 0.5rem; border-radius: 10px; font-weight: 600;">${medicine.quantity}</span></td>
+                <td>${medicine.expiryDate}</td>
+                <td>
+                    <span class="status-badge ${statusInfo.class}">
+                        ${statusInfo.status}
+                    </span>
+                    <small style="display: block; margin-top: 0.25rem; color: #666;">
+                        ${days >= 0 ? `${days} days left` : `${Math.abs(days)} days ago`}
+                    </small>
+                </td>
+            `;
+            medicineList.appendChild(tr);
+        });
+    }
+
+    function updateStats(medicines) {
+        const totalMedicines = medicines.length;
+        const expiredCount = medicines.filter(m => getDaysDifference(m.expiryDate) < 0).length;
+        const expiringCount = medicines.filter(m => {
+            const days = getDaysDifference(m.expiryDate);
+            return days >= 0 && days <= 30;
+        }).length;
+        const validCount = totalMedicines - expiredCount - expiringCount;
+        document.getElementById('total-medicines').textContent = totalMedicines;
+        document.getElementById('expired-count').textContent = expiredCount;
+        document.getElementById('expiring-count').textContent = expiringCount;
+        document.getElementById('valid-count').textContent = validCount;
+    }
+
+    // Add medicine form handler
+    document.getElementById('add-medicine-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const name = document.getElementById('name').value.trim();
+        const company = document.getElementById('company').value.trim();
+        const quantity = parseInt(document.getElementById('quantity').value);
+        const expiryDate = document.getElementById('expiryDate').value;
+        const medicineData = { name, company, quantity, expiryDate };
+        fetch('http://localhost:8080/medicines', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(medicineData)
+        })
+        .then(response => {
+            if (!response.ok) throw new Error('Failed to add medicine');
+            return response.json();
+        })
+        .then(() => {
+            showMessage('medicine-message', '✅ Medicine added successfully!');
+            document.getElementById('add-medicine-form').reset();
+            fetchMedicines();
+        })
+        .catch(error => {
+            console.error('Error adding medicine:', error);
+            showMessage('medicine-message', '❌ Error adding medicine: ' + error.message, true);
+        });
+    });
+
+    // Companies functionality
+    function viewCompanies() {
+        fetch('http://localhost:8080/medicines')
+            .then(response => response.json())
+            .then(data => {
+                const companiesGrid = document.getElementById('companies-grid');
+                const companies = [...new Set(data.map(medicine => medicine.company))].sort();
+                companiesGrid.innerHTML = '';
+                if (companies.length === 0) {
+                    companiesGrid.innerHTML = '<div class="company-card" style="grid-column: 1/-1; text-align: center;">No companies found</div>';
+                    return;
+                }
+                companies.forEach(company => {
+                    const medicineCount = data.filter(m => m.company === company).length;
+                    const totalQuantity = data.filter(m => m.company === company).reduce((sum, m) => sum + m.quantity, 0);
+                    const companyCard = document.createElement('div');
+                    companyCard.className = 'company-card';
+                    companyCard.innerHTML = `
+                        <h3 style="color: #4a5568; margin-bottom: 0.5rem;">${company}</h3>
+                        <p style="color: #666; margin: 0.25rem 0;"><strong>Medicines:</strong> ${medicineCount}</p>
+                        <p style="color: #666; margin: 0.25rem 0;"><strong>Total Stock:</strong> ${totalQuantity}</p>
+                    `;
+                    companiesGrid.appendChild(companyCard);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching companies:', error);
+                document.getElementById('companies-grid').innerHTML = '<div class="company-card" style="grid-column: 1/-1; text-align: center; color: #e53e3e;">Error loading companies</div>';
+            });
+    }
+
+    // Expiry stock management
+    function viewExpiryStock() {
+        fetch('http://localhost:8080/medicines')
+            .then(response => response.json())
+            .then(data => {
+                const expiredMedicines = data.filter(medicine => getDaysDifference(medicine.expiryDate) < 0);
+                displayExpiryStock(expiredMedicines);
+            })
+            .catch(error => {
+                console.error('Error fetching expired medicines:', error);
+            });
+    }
+    function viewExpiringSoon() {
+        fetch('http://localhost:8080/medicines')
+            .then(response => response.json())
+            .then(data => {
+                const expiringSoon = data.filter(medicine => {
+                    const days = getDaysDifference(medicine.expiryDate);
+                    return days >= 0 && days <= 30;
+                });
+                displayExpiryStock(expiringSoon);
+            })
+            .catch(error => {
+                console.error('Error fetching expiring medicines:', error);
+            });
+    }
+    function viewValidStock() {
+        fetch('http://localhost:8080/medicines')
+            .then(response => response.json())
+            .then(data => {
+                const validMedicines = data.filter(medicine => getDaysDifference(medicine.expiryDate) > 30);
+                displayExpiryStock(validMedicines);
+            })
+            .catch(error => {
+                console.error('Error fetching valid medicines:', error);
+            });
+    }
+    function displayExpiryStock(medicines) {
+        const expiryStockList = document.getElementById('expiry-stock-list');
+        expiryStockList.innerHTML = '';
+        if (medicines.length === 0) {
+            expiryStockList.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 2rem; color: #666;">No medicines found</td></tr>';
+            return;
+        }
+        medicines.forEach(medicine => {
+            const days = getDaysDifference(medicine.expiryDate);
+            const statusInfo = getExpiryStatus(medicine.expiryDate);
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td style="font-weight: 600;">${medicine.name}</td>
+                <td>${medicine.company}</td>
+                <td><span style="background: #e2e8f0; padding: 0.25rem 0.5rem; border-radius: 10px; font-weight: 600;">${medicine.quantity}</span></td>
+                <td>${medicine.expiryDate}</td>
+                <td style="font-weight: 600; color: ${days < 0 ? '#e53e3e' : days <= 30 ? '#dd6b20' : '#2f855a'};">
+                    ${days >= 0 ? days : Math.abs(days) + ' (expired)'}
+                </td>
+                <td>
+                    <span class="status-badge ${statusInfo.class}">
+                        ${statusInfo.status}
+                    </span>
+                </td>
+            `;
+            expiryStockList.appendChild(tr);
+        });
+    }
+
+    // Delete medicine functionality
+    function searchForDelete() {
+        const searchName = document.getElementById('delete-search').value.trim();
+        if (!searchName) {
+            document.getElementById('delete-results').innerHTML = '<tr><td colspan="5" style="text-align: center; padding: 2rem; color: #666;">Please enter a search term</td></tr>';
+            return;
+        }
+        fetch(`http://localhost:8080/medicines?name=${encodeURIComponent(searchName)}`)
+            .then(response => response.json())
+            .then(data => {
+                displayDeleteCandidates(data);
+            })
+            .catch(error => {
+                console.error('Error searching medicines for delete:', error);
+                document.getElementById('delete-results').innerHTML = '<tr><td colspan="5" style="text-align: center; padding: 2rem; color: #e53e3e;">Error searching medicines</td></tr>';
+            });
+    }
+    function displayDeleteCandidates(medicines) {
+        const deleteResults = document.getElementById('delete-results');
+        deleteResults.innerHTML = '';
+        if (medicines.length === 0) {
+            deleteResults.innerHTML = '<tr><td colspan="5" style="text-align: center; padding: 2rem; color: #666;">No medicines found</td></tr>';
+            return;
+        }
+        medicines.forEach((medicine) => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td style="font-weight: 600;">${medicine.name}</td>
+                <td>${medicine.company}</td>
+                <td>${medicine.quantity}</td>
+                <td>${medicine.expiryDate}</td>
+                <td>
+                    <button class="delete-btn" onclick="deleteMedicine('${medicine.name}', '${medicine.company}')">
+                        🗑️ Delete
+                    </button>
+                </td>
+            `;
+            deleteResults.appendChild(tr);
+        });
+    }
+    function deleteMedicine(name, company) {
+        if (!confirm(`Are you sure you want to delete "${name}" from ${company}?`)) return;
+        fetch(`http://localhost:8080/medicines/${encodeURIComponent(name)}`, {
+            method: 'DELETE'
+        })
+        .then(response => {
+            if (!response.ok) throw new Error('Failed to delete medicine');
+            showMessage('delete-message', `✅ Medicine "${name}" deleted successfully!`);
+            searchForDelete();
+            fetchMedicines();
+        })
+        .catch(error => {
+            console.error('Error deleting medicine:', error);
+            showMessage('delete-message', `❌ Error deleting medicine: ${error.message}`, true);
+        });
+    }
+
+    // Bill management
+    function fetchAndDisplayBills() {
+        fetch('http://localhost:8080/bills')
+            .then(response => response.json())
+            .then(data => {
+                bills = data;
+                displayBills(bills);
+                updateBillStats(bills);
+            })
+            .catch(error => {
+                console.error('Error fetching bills:', error);
+            });
+    }
+
+    document.getElementById('add-bill-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const medicineName = document.getElementById('bill-medicine').value.trim();
+        const quantity = parseInt(document.getElementById('bill-quantity').value);
+        const price = parseFloat(document.getElementById('bill-price').value);
+        const customerName = document.getElementById('customer-name').value.trim() || 'Walk-in Customer';
+        fetch(`http://localhost:8080/medicines?name=${encodeURIComponent(medicineName)}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.length === 0) throw new Error('Medicine not found in inventory');
+                const medicine = data.find(m => m.name.toLowerCase() === medicineName.toLowerCase());
+                if (!medicine) throw new Error('Exact medicine match not found');
+                if (medicine.quantity < quantity) throw new Error(`Insufficient stock. Available: ${medicine.quantity}`);
+                const billData = {
+                    medicineName,
+                    quantity,
+                    price,
+                    total: quantity * price,
+                    date: new Date().toISOString().split('T')[0],
+                    customerName
+                };
+                return fetch('http://localhost:8080/bills', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(billData)
+                });
+            })
+            .then(response => {
+                if (!response.ok) throw new Error('Failed to add bill');
+                showMessage('bill-message', '✅ Bill created successfully!');
+                document.getElementById('add-bill-form').reset();
+                fetchAndDisplayBills();
+                fetchMedicines();
+            })
+            .catch(error => {
+                console.error('Error adding bill:', error);
+                showMessage('bill-message', '❌ Error creating bill: ' + error.message, true);
+            });
+    });
+
+    function displayBills(billsToDisplay = bills) {
+        const billList = document.getElementById('bill-list');
+        billList.innerHTML = '';
+        if (billsToDisplay.length === 0) {
+            billList.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 2rem; color: #666;">No bills found</td></tr>';
+            return;
+        }
+        billsToDisplay.forEach(bill => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td style="font-weight: 600;">${bill.medicineName}</td>
+                <td>${bill.customerName || ''}</td>
+                <td><span style="background: #e2e8f0; padding: 0.25rem 0.5rem; border-radius: 10px; font-weight: 600;">${bill.quantity}</span></td>
+                <td>${(bill.price || bill.unitPrice || 0).toFixed(2)}</td>
+                <td style="font-weight: 600; color: #2f855a;">${(bill.total || bill.totalAmount || 0).toFixed(2)}</td>
+                <td>
+                    <div>${bill.date}</div>
+                    ${bill.time ? `<small style="color: #666;">${bill.time}</small>` : ''}
+                </td>
+            `;
+            billList.appendChild(tr);
+        });
+    }
+
+    function updateBillStats(billsArr = bills) {
+        const totalBills = billsArr.length;
+        const totalRevenue = billsArr.reduce((sum, bill) => sum + (bill.total || bill.totalAmount || 0), 0);
+        document.getElementById('total-bills').textContent = totalBills;
+        document.getElementById('total-revenue').textContent = `${totalRevenue.toFixed(2)}`;
+    }
+
+    function searchBills() {
+        const searchTerm = document.getElementById('bill-search').value.trim().toLowerCase();
+        if (!searchTerm) {
+            displayBills();
+            return;
+        }
+        const filteredBills = bills.filter(bill =>
+            bill.medicineName.toLowerCase().includes(searchTerm) ||
+            (bill.customerName && bill.customerName.toLowerCase().includes(searchTerm))
+        );
+        displayBills(filteredBills);
+    }
+
+    function clearBillSearch() {
+        document.getElementById('bill-search').value = '';
+        displayBills();
+    }
+
+    // Event listeners
+    document.getElementById('search-name').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') searchMedicines();
+    });
+    document.getElementById('delete-search').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') searchForDelete();
+    });
+    document.getElementById('bill-search').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') searchBills();
+    });
+
+    // Initialize page
+    document.addEventListener('DOMContentLoaded', function() {
+        fetchMedicines();
+        fetchAndDisplayBills();
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('expiryDate').setAttribute('min', today);
+    });
+</script>
+</body>
+</html>
