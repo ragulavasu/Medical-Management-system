@@ -36,7 +36,7 @@ A modern web application for managing medicines, billing, and inventory in a pha
 ### Setup
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/yourusername/medicine-management-system.git
+   git clone https://github.com/ragulavasu/Medical-Management-system.git
    cd medicine-management-system
    ```
 2. **Configure MongoDB:**

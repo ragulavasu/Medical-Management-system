@@ -475,6 +475,9 @@
             border-top: 2px solid #e2e8f0;
             margin: 1rem 0;
         }
+    .text-center {
+        text-align: center;
+    }
     </style>
 </head>
 <body>
@@ -734,7 +737,7 @@
                             <th style="text-align:center;">Bill ID</th>
                             <th style="text-align:center;">Medicine</th>
                             <th style="text-align:center;">Customer</th>
-                            <th style="text-align:center;">Quantity</th>
+                            <th class="text-center">Date</th>
                             <th style="text-align:center;">Unit Price</th>
                             <th style="text-align:center;">Total Amount</th>
                             <th style="text-align:center;">Date</th>
@@ -782,6 +785,7 @@ function getExpiryStatus(expiryDate) {
     return { status: 'Valid', class: 'status-valid' };
 }
 
+// shows temparary alert msgs until 5sec
 function showMessage(elementId, message, isError = false) {
     const element = document.getElementById(elementId);
     element.innerHTML = `<div class="message ${isError ? 'error' : 'success'}">${message}</div>`;
