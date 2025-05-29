@@ -1816,3 +1816,7 @@ WARNING: Unmatched cancel notification for request id 446
 2025.05.29 18:13:51 INFO  Shutting down server
 2025.05.29 18:13:51 INFO  shutting down Metals
 2025.05.29 18:13:51 INFO  Exiting server
+2025.05.29 18:32:51 INFO  Started: Metals version 1.5.3 in folders 'C:\Users\vasur\OneDrive\Desktop\BDA' for client Visual Studio Code 1.100.1.
+2025.05.29 18:32:53 INFO  skipping build import with status 'Dismissed'
+May 29, 2025 6:33:48 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
