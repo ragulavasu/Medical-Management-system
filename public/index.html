@@ -196,6 +196,13 @@
             background: linear-gradient(135deg, #f56565, #e53e3e);
             color: white;
             box-shadow: 0 4px 15px rgba(245, 101, 101, 0.3);
+            display: inline-block;
+            vertical-align: middle;
+            height: 40px;
+            padding: 0 1.5rem;
+            font-size: 1rem;
+            line-height: 1;
+            margin: 0;
         }
 
         .btn-danger:hover {
@@ -251,7 +258,7 @@
             background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
             padding: 1rem;
-            text-align: left;
+            text-align: center;
             font-weight: 600;
             font-size: 0.9rem;
             text-transform: uppercase;
@@ -412,15 +419,7 @@
 
         /* Medicine Search Styles */
         .bill-medicine-row {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .bill-medicine-select, .bill-medicine-qty, .bill-medicine-price {
-            flex: 1;
-            min-width: 200px;
+            /* No flex or width for table rows */
         }
 
         #bill-grand-total {
