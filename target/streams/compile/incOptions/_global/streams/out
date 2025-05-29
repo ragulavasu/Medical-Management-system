@@ -1,2 +1,59 @@
 [0m[[0m[0mdebug[0m] [0m[0mCreated transactional ClassFileManager with tempDir = C:\Users\vasur\OneDrive\Desktop\BDA\target\scala-2.13\classes.bak[0m
+[0m[[0m[0mdebug[0m] [0m[0mAbout to delete class files:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	BillService$$anon$1$BillMacroCodec$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	BillService$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	BillService$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	BillService$$anon$1$BillMacroCodec$2$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	BillService$$anonfun$addBill$3.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	BillService.class[0m
+[0m[[0m[0mdebug[0m] [0m[0mWe backup class files:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	BillService$$anon$1$BillMacroCodec$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	BillService$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	BillService$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	BillService$$anon$1$BillMacroCodec$2$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	BillService$$anonfun$addBill$3.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	BillService.class[0m
+[0m[[0m[0mdebug[0m] [0m[0mRegistering generated classes:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	BillService$$anon$1$BillMacroCodec$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	BillService$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	BillService$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	BillService$$anonfun$addBill$4.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	BillService$$anon$1$BillMacroCodec$2$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	BillService$$anon$2.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	BillService$$anon$2$BillMedicineMacroCodec$2$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	BillService$$anon$2$BillMedicineMacroCodec$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	BillService.class[0m
+[0m[[0m[0mdebug[0m] [0m[0mAbout to delete class files:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ApiBillMedicine$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ApiBill.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ApiBillMedicine.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	JsonSupport.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Main.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Main$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ApiMedicine$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Main$$anonfun$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ApiMedicine.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ApiBill$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0mWe backup class files:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ApiBillMedicine$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ApiBill.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ApiBillMedicine.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	JsonSupport.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Main.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Main$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ApiMedicine$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Main$$anonfun$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ApiMedicine.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ApiBill$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0mRegistering generated classes:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ApiBillMedicine$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ApiBill.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ApiBillMedicine.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	JsonSupport.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Main.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Main$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ApiMedicine$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Main$$anonfun$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ApiMedicine.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ApiBill$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0mRemoving the temporary directory used for backing up class files: C:\Users\vasur\OneDrive\Desktop\BDA\target\scala-2.13\classes.bak[0m

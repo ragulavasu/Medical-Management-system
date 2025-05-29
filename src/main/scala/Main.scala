@@ -135,35 +135,66 @@ object Main extends JsonSupport {
               } ~
               post {
                 entity(as[ApiBill]) { apiBill =>
-                  // For each medicine, check stock and update
-                  val medicineUpdates = apiBill.medicines.map { med =>
-                    MedicineService.findMedicineByName(med.medicineName).flatMap {
+                  // Validate all medicines first before making any changes
+                  val validationFutures = apiBill.medicines.map { med =>
+                    MedicineService.findMedicineByName(med.medicineName).map {
                       case Some(medicine) if medicine.quantity >= med.quantity =>
-                        MedicineService.updateMedicineQuantity(med.medicineName, medicine.quantity - med.quantity)
-                      case Some(_) =>
-                        Future.failed(new Exception(s"Insufficient stock for ${med.medicineName}"))
+                        Right(medicine)
+                      case Some(medicine) =>
+                        Left(s"Insufficient stock for ${med.medicineName}. Available: ${medicine.quantity}")
                       case None =>
-                        Future.failed(new Exception(s"Medicine not found: ${med.medicineName}"))
+                        Left(s"Medicine not found: ${med.medicineName}")
                     }
                   }
-                  val allUpdates = Future.sequence(medicineUpdates)
-                  onComplete(allUpdates) {
-                    case Success(_) =>
-                      val bill = Bill(
-                        billId = UUID.randomUUID().toString,
-                        medicines = apiBill.medicines.map(m => models.BillMedicine(m.medicineName, m.quantity, m.unitPrice)),
-                        total = apiBill.total,           // <-- use total, not totalPrice
-                        date = apiBill.date,
-                        customerName = apiBill.customerName
-                      )
-                      onComplete(BillService.addBill(bill)) {
-                        case Success(_) =>
-                          complete(StatusCodes.Created, billToApi(bill))
-                        case Failure(ex) =>
-                          complete(StatusCodes.InternalServerError, JsObject("error" -> JsString(ex.getMessage)))
+
+                  val validationResults = Future.sequence(validationFutures)
+                  
+                  onComplete(validationResults) {
+                    case Success(results) =>
+                      // Check if any validation failed
+                      val errors = results.collect { case Left(error) => error }
+                      if (errors.nonEmpty) {
+                        complete(StatusCodes.BadRequest, JsObject("error" -> JsString(errors.mkString(", "))))
+                      } else {
+                        // All validations passed, proceed with stock updates
+                        val medicineUpdates = apiBill.medicines.map { med =>
+                          MedicineService.updateMedicineQuantity(med.medicineName, 
+                            results.find(_.isRight).get.getOrElse(throw new Exception("Unexpected error")).quantity - med.quantity)
+                        }
+                        
+                        val allUpdates = Future.sequence(medicineUpdates)
+                        
+                        onComplete(allUpdates) {
+                          case Success(_) =>
+                            val bill = Bill(
+                              billId = UUID.randomUUID().toString,
+                              medicines = apiBill.medicines.map(m => models.BillMedicine(m.medicineName, m.quantity, m.unitPrice)),
+                              total = apiBill.total,
+                              date = apiBill.date,
+                              customerName = apiBill.customerName
+                            )
+                            
+                            onComplete(BillService.addBill(bill)) {
+                              case Success(_) =>
+                                complete(StatusCodes.Created, billToApi(bill))
+                              case Failure(ex) =>
+                                // If bill creation fails, we should rollback the stock updates
+                                val rollbackFutures = apiBill.medicines.map { med =>
+                                  MedicineService.findMedicineByName(med.medicineName).flatMap {
+                                    case Some(medicine) =>
+                                      MedicineService.updateMedicineQuantity(med.medicineName, medicine.quantity + med.quantity)
+                                    case None => Future.successful(())
+                                  }
+                                }
+                                Future.sequence(rollbackFutures)
+                                complete(StatusCodes.InternalServerError, JsObject("error" -> JsString(ex.getMessage)))
+                            }
+                          case Failure(ex) =>
+                            complete(StatusCodes.InternalServerError, JsObject("error" -> JsString(ex.getMessage)))
+                        }
                       }
                     case Failure(ex) =>
-                      complete(StatusCodes.BadRequest, JsObject("error" -> JsString(ex.getMessage)))
+                      complete(StatusCodes.InternalServerError, JsObject("error" -> JsString(ex.getMessage)))
                   }
                 }
               }

@@ -1103,16 +1103,22 @@ document.getElementById('add-bill-form').addEventListener('submit', async functi
         return;
     }
 
+    // Validate all medicines before proceeding
+    const validationErrors = [];
     for (const med of billMedicines) {
         const medicine = allMedicines.find(m => m.name.toLowerCase() === med.medicineName.toLowerCase());
         if (!medicine) {
-            showMessage('bill-message', `❌ Medicine "${med.medicineName}" not found in inventory`, true);
-            return;
+            validationErrors.push(`Medicine "${med.medicineName}" not found in inventory`);
+            continue;
         }
         if (medicine.quantity < med.quantity) {
-            showMessage('bill-message', `❌ Insufficient stock for "${med.medicineName}". Available: ${medicine.quantity}`, true);
-            return;
+            validationErrors.push(`Insufficient stock for "${med.medicineName}". Available: ${medicine.quantity}`);
         }
+    }
+
+    if (validationErrors.length > 0) {
+        showMessage('bill-message', '❌ ' + validationErrors.join('<br>'), true);
+        return;
     }
 
     const customerName = document.getElementById('customer-name').value.trim() || 'Walk-in Customer';
@@ -1130,7 +1136,12 @@ document.getElementById('add-bill-form').addEventListener('submit', async functi
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(billData)
         });
-        if (!response.ok) throw new Error('Failed to add bill');
+        
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.error || 'Failed to create bill');
+        }
+        
         showMessage('bill-message', '✅ Bill created successfully!');
         document.getElementById('add-bill-form').reset();
         document.getElementById('bill-medicines-list').innerHTML = '';
