@@ -222,9 +222,9 @@ object Main extends JsonSupport {
         )
       }
 
-    val bindingFuture = Http().newServerAt("localhost", 8080).bind(route)
+    val bindingFuture = Http().newServerAt("localhost", 8000).bind(route)
 
-    println(s"Server online at http://localhost:8080/")
+    println(s"Server online at http://localhost:8000/")
     println("CORS enabled for browser access")
     println("MongoDB integration enabled")
     println("Press RETURN to stop...")

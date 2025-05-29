@@ -1020,9 +1020,39 @@ function createMedicineDropdown(selected = "") {
     return select;
 }
 
+function validateCurrentBillRows() {
+    const billMedicines = Array.from(document.querySelectorAll('.bill-medicine-row')).map(row => {
+        const select = row.querySelector('.bill-medicine-select');
+        const qty = row.querySelector('.bill-medicine-qty');
+        const price = row.querySelector('.bill-medicine-price');
+        const medicineName = select.value.trim();
+        const quantity = parseInt(qty.value);
+        const unitPrice = parseFloat(price.value);
+        return { medicineName, quantity, unitPrice };
+    }).filter(med => med.medicineName && med.quantity > 0);
+
+    const validationErrors = [];
+    for (const med of billMedicines) {
+        const medicine = allMedicines.find(m => m.name.toLowerCase() === med.medicineName.toLowerCase());
+        if (!medicine) {
+            validationErrors.push(`Medicine "${med.medicineName}" not found in inventory`);
+            continue;
+        }
+        if (medicine.quantity < med.quantity) {
+            validationErrors.push(`Insufficient stock for "${med.medicineName}". Available: ${medicine.quantity}`);
+        }
+    }
+    return validationErrors;
+}
+
 function addBillMedicineRow() {
     if (!allMedicines || allMedicines.length === 0) {
         showMessage('bill-message', 'No medicines available. Please add medicines first.', true);
+        return;
+    }
+    const errors = validateCurrentBillRows();
+    if (errors.length > 0) {
+        showMessage('bill-message', '❌ ' + errors.join('<br>'), true);
         return;
     }
     const row = document.createElement('tr');
@@ -1142,18 +1172,7 @@ document.getElementById('add-bill-form').addEventListener('submit', async functi
     }
 
     // Validate all medicines before proceeding
-    const validationErrors = [];
-    for (const med of billMedicines) {
-        const medicine = allMedicines.find(m => m.name.toLowerCase() === med.medicineName.toLowerCase());
-        if (!medicine) {
-            validationErrors.push(`Medicine "${med.medicineName}" not found in inventory`);
-            continue;
-        }
-        if (medicine.quantity < med.quantity) {
-            validationErrors.push(`Insufficient stock for "${med.medicineName}". Available: ${medicine.quantity}`);
-        }
-    }
-
+    const validationErrors = validateCurrentBillRows();
     if (validationErrors.length > 0) {
         showMessage('bill-message', '❌ ' + validationErrors.join('<br>'), true);
         return;
