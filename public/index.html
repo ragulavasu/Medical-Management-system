@@ -430,6 +430,22 @@
             text-align: right;
             color: #4a5568;
         }
+
+        .table-input {
+            width: 100%;
+            padding: 0.5rem 0.75rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: white;
+            box-sizing: border-box;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .table-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.1);
+        }
     </style>
 </head>
 <body>
@@ -633,8 +649,20 @@
                             <input type="text" id="customer-name" placeholder="Enter customer name (optional)">
                         </div>
                     </div>
-                    <div class="form-grid" id="bill-medicines-list">
-                        <!-- Medicine rows will be added here dynamically -->
+                    <div class="table-container" style="margin: 1rem 0;">
+                        <table class="data-table" style="width: 100%;">
+                            <thead>
+                                <tr>
+                                    <th style="text-align:center;">Medicine</th>
+                                    <th style="text-align:center;">Quantity</th>
+                                    <th style="text-align:center;">Unit Price</th>
+                                    <th style="text-align:center;">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="bill-medicines-list">
+                                <!-- Medicine rows will be added here dynamically -->
+                            </tbody>
+                        </table>
                     </div>
                     <div class="btn-group">
                         <button type="button" class="btn btn-primary" onclick="addBillMedicineRow()">Add Medicine</button>
@@ -978,7 +1006,7 @@ async function fetchAndDisplayBills() {
 
 function createMedicineDropdown(selected = "") {
     const select = document.createElement('select');
-    select.className = 'bill-medicine-select form-group';
+    select.className = 'bill-medicine-select table-input';
     select.required = true;
     select.innerHTML = '<option value="">Select a medicine</option>';
     allMedicines.forEach(med => {
@@ -998,16 +1026,18 @@ function addBillMedicineRow() {
         showMessage('bill-message', 'No medicines available. Please add medicines first.', true);
         return;
     }
-    const row = document.createElement('div');
+    const row = document.createElement('tr');
     row.className = 'bill-medicine-row';
     
     const select = createMedicineDropdown();
+    select.className = 'bill-medicine-select table-input';
+    
     const qty = document.createElement('input');
     qty.type = 'number';
     qty.min = 1;
     qty.required = true;
     qty.placeholder = 'Quantity';
-    qty.className = 'bill-medicine-qty form-group';
+    qty.className = 'bill-medicine-qty table-input';
 
     const price = document.createElement('input');
     price.type = 'number';
@@ -1015,7 +1045,7 @@ function addBillMedicineRow() {
     price.step = '0.01';
     price.required = true;
     price.placeholder = 'Unit Price';
-    price.className = 'bill-medicine-price form-group';
+    price.className = 'bill-medicine-price table-input';
 
     const removeBtn = document.createElement('button');
     removeBtn.type = 'button';
@@ -1035,10 +1065,19 @@ function addBillMedicineRow() {
     qty.addEventListener('input', updateBillGrandTotal);
     price.addEventListener('input', updateBillGrandTotal);
 
-    row.appendChild(select);
-    row.appendChild(qty);
-    row.appendChild(price);
-    row.appendChild(removeBtn);
+    const td1 = document.createElement('td');
+    td1.appendChild(select);
+    const td2 = document.createElement('td');
+    td2.appendChild(qty);
+    const td3 = document.createElement('td');
+    td3.appendChild(price);
+    const td4 = document.createElement('td');
+    td4.appendChild(removeBtn);
+
+    row.appendChild(td1);
+    row.appendChild(td2);
+    row.appendChild(td3);
+    row.appendChild(td4);
 
     document.getElementById('bill-medicines-list').appendChild(row);
     updateBillGrandTotal();
