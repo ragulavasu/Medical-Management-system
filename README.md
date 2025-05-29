@@ -12,13 +12,17 @@ A modern web application for managing medicines, billing, and inventory in a pha
 - Responsive, modern UI with modal dialogs for actions
 
 ---
+| Add Medicine | View Medicines | Add Bill |
+|--------------|----------------|----------|
+| ![](screenshots/add-medicine.png) | ![](screenshots/view-medicines.png) | ![](screenshots/add-bill.png) |
 
-## UI Screenshots
+| View Bills | Search Medicine | Expiry Stock |
+|------------|--------------|--------------|
+| ![](screenshots/view-bills.png) | ![](screenshots/search-medicine.png) | ![](screenshots/expiry-stock.png) |
 
-<!-- Insert your UI screenshots below. Example: -->
-| Add Bill Module | View Medicines Module |
-|-----------------|----------------------|
-| ![Add Bill Screenshot](screenshots/add-bill.png) | ![View Medicines Screenshot](screenshots/view-medicines.png) |
+| Manage Companies | Mobile View |
+|------------------|-----------|-------------|
+| ![](screenshots/manage-companies.png) | ![](screenshots/mobile-view.png) |
 
 ---
 
