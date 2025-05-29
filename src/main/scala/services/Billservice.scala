@@ -10,6 +10,8 @@ import org.mongodb.scala.MongoClient.DEFAULT_CODEC_REGISTRY
 import scala.concurrent.{ExecutionContext, Future}
 import scala.util.{Try, Success, Failure}
 import scala.jdk.CollectionConverters._
+import org.bson.BsonDocument
+import org.bson.BsonValue
 
 object BillService {
   implicit val ec: ExecutionContext = ExecutionContext.global
@@ -50,15 +52,21 @@ object BillService {
   }
 
   private def documentToBill(doc: Document): Bill = {
+    val medicinesList = doc.get("medicines") match {
+      case Some(medicines) => medicines.asArray().getValues.asScala.map { medValue =>
+        val medDoc = medValue.asDocument()
+        BillMedicine(
+          medicineName = medDoc.getString("medicineName").getValue,
+          quantity = medDoc.getInt32("quantity").getValue,
+          unitPrice = medDoc.getDouble("unitPrice").getValue
+        )
+      }.toList
+      case None => List.empty
+    }
+
     Bill(
       billId = doc.getString("billId"),
-      medicines = doc.getList("medicines", classOf[Document]).asScala.map { medDoc =>
-        BillMedicine(
-          medicineName = medDoc.getString("medicineName"),
-          quantity = medDoc.getInteger("quantity"),
-          unitPrice = medDoc.getDouble("unitPrice")
-        )
-      }.toList,
+      medicines = medicinesList,
       total = doc.getDouble("total"),
       date = doc.getString("date"),
       customerName = doc.getString("customerName")
