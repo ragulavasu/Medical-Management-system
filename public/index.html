@@ -9,7 +9,6 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-
         }
 
         body {
@@ -21,14 +20,6 @@
 
         .header {
             background: rgba(255, 255, 255, 0.95);
-            -webkit-backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
             padding: 1rem 2rem;
@@ -88,8 +79,6 @@
 
         .tab-content {
             display: none;
-            -webkit-backdrop-filter: blur(15px);
-            backdrop-filter: blur(15px);
             backdrop-filter: blur(15px);
             border-radius: 20px;
             padding: 2rem;
@@ -422,31 +411,24 @@
         }
 
         /* Medicine Search Styles */
-        #bill-medicine {
-            position: relative;
-            z-index: 10;
+        .bill-medicine-row {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
         }
 
-        #bill-medicine::-webkit-calendar-picker-indicator {
-            display: none !important;
+        .bill-medicine-select, .bill-medicine-qty, .bill-medicine-price {
+            flex: 1;
+            min-width: 200px;
         }
 
-        datalist {
-            width: 100%;
-            background: white;
-            border-radius: 0 0 10px 10px;
-            border: 2px solid #e2e8f0;
-            max-height: 200px;
-            overflow-y: auto;
-        }
-
-        datalist option {
-            padding: 8px;
-            cursor: pointer;
-        }
-
-        datalist option:hover {
-            background: #f7fafc;
+        #bill-grand-total {
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin: 1rem 0;
+            text-align: right;
+            color: #4a5568;
         }
     </style>
 </head>
@@ -476,7 +458,8 @@
                     <div class="form-grid">
                         <div class="form-group">
                             <label for="name">Medicine Name *</label>
-                            <input type="text" id="name" required placeholder="Enter medicine name">
+                            <input type="text" id="name" list="medicine-names" required placeholder="Enter medicine name">
+                            <datalist id="medicine-names"></datalist>
                         </div>
                         <div class="form-group">
                             <label for="company">Company *</label>
@@ -485,6 +468,10 @@
                         <div class="form-group">
                             <label for="quantity">Quantity *</label>
                             <input type="number" id="quantity" min="1" required placeholder="Enter quantity">
+                        </div>
+                        <div class="form-group">
+                            <label for="cost">Unit Price (₹) *</label>
+                            <input type="number" id="cost" step="0.01" min="0" required placeholder="Enter medicine cost">
                         </div>
                         <div class="form-group">
                             <label for="expiryDate">Expiry Date *</label>
@@ -531,6 +518,7 @@
                             <th>Medicine Name</th>
                             <th>Company</th>
                             <th>Quantity</th>
+                            <th>Cost</th>
                             <th>Expiry Date</th>
                             <th>Status</th>
                         </tr>
@@ -641,30 +629,17 @@
                 <form id="add-bill-form">
                     <div class="form-grid">
                         <div class="form-group">
-                            <label for="bill-medicine">Medicine Name *</label>
-                            <input type="text" 
-                                   id="bill-medicine" 
-                                   list="medicine-suggestions"
-                                   required 
-                                   placeholder="Type to search medicine..."
-                                   autocomplete="off">
-                            <datalist id="medicine-suggestions">
-                                <!-- Medicine suggestions will be populated here -->
-                            </datalist>
-                        </div>
-                        <div class="form-group">
-                            <label for="bill-quantity">Quantity *</label>
-                            <input type="number" id="bill-quantity" min="1" required placeholder="Enter quantity">
-                        </div>
-                        <div class="form-group">
-                            <label for="bill-price">Unit Price (rs) *</label>
-                            <input type="number" id="bill-price" step="0.01" min="0" required placeholder="Enter unit price">
-                        </div>
-                        <div class="form-group">
                             <label for="customer-name">Customer Name</label>
                             <input type="text" id="customer-name" placeholder="Enter customer name (optional)">
                         </div>
                     </div>
+                    <div class="form-grid" id="bill-medicines-list">
+                        <!-- Medicine rows will be added here dynamically -->
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary" onclick="addBillMedicineRow()">Add Medicine</button>
+                    </div>
+                    <div id="bill-grand-total">Grand Total: ₹0.00</div>
                     <div class="btn-group">
                         <button type="submit" class="btn btn-success">Create Bill</button>
                         <button type="reset" class="btn btn-primary">Clear Form</button>
@@ -683,7 +658,7 @@
                     <div class="stat-label">Total Bills</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number" id="total-revenue">$0</div>
+                    <div class="stat-number" id="total-revenue">₹0.00</div>
                     <div class="stat-label">Total Revenue</div>
                 </div>
             </div>
@@ -692,16 +667,17 @@
                 <button class="btn btn-primary" onclick="searchBills()">🔍 Search</button>
                 <button class="btn btn-warning" onclick="clearBillSearch()">Clear</button>
             </div>
-            <div class="table-container">
-                <table class="data-table">
+            <div class="table-container" style="overflow-x:auto;">
+                <table class="data-table" style="min-width:900px;">
                     <thead>
                         <tr>
-                            <th>Medicine</th>
-                            <th>Customer</th>
-                            <th>Quantity</th>
-                            <th>Unit Price</th>
-                            <th>Total Amount</th>
-                            <th>Date</th>
+                            <th style="text-align:center;">Bill ID</th>
+                            <th style="text-align:center;">Medicine</th>
+                            <th style="text-align:center;">Customer</th>
+                            <th style="text-align:center;">Quantity</th>
+                            <th style="text-align:center;">Unit Price</th>
+                            <th style="text-align:center;">Total Amount</th>
+                            <th style="text-align:center;">Date</th>
                         </tr>
                     </thead>
                     <tbody id="bill-list">
@@ -713,445 +689,562 @@
     </div>
 
     <script>
-    // Global variables
-    let bills = [];
-    let allMedicines = [];
+let bills = [];
+let allMedicines = [];
 
-    // Tab management
-    function showTab(tabName) {
-        const tabContents = document.querySelectorAll('.tab-content');
-        tabContents.forEach(tab => tab.classList.remove('active'));
-        const navTabs = document.querySelectorAll('.nav-tab');
-        navTabs.forEach(tab => tab.classList.remove('active'));
-        document.getElementById(tabName).classList.add('active');
-        event.target.classList.add('active');
-        if (tabName === 'view-medicines') {
-            fetchMedicines();
-        } else if (tabName === 'search-bills') {
-            fetchAndDisplayBills();
-        }
+// Utility functions
+function getDaysDifference(dateString) {
+    const expiryDate = new Date(dateString);
+    const currentDate = new Date();
+    const timeDifference = expiryDate.getTime() - currentDate.getTime();
+    return Math.ceil(timeDifference / (1000 * 3600 * 24));
+}
+
+function getExpiryStatus(expiryDate) {
+    const days = getDaysDifference(expiryDate);
+    if (days < 0) return { status: 'Expired', class: 'status-expired' };
+    if (days <= 30) return { status: 'Expiring Soon', class: 'status-expiring' };
+    return { status: 'Valid', class: 'status-valid' };
+}
+
+function showMessage(elementId, message, isError = false) {
+    const element = document.getElementById(elementId);
+    element.innerHTML = `<div class="message ${isError ? 'error' : 'success'}">${message}</div>`;
+    setTimeout(() => { element.innerHTML = ''; }, 5000);
+}
+
+// Medicine management
+async function fetchMedicines() {
+    try {
+        const response = await fetch('/medicines');
+        if (!response.ok) throw new Error('Failed to fetch medicines');
+        const data = await response.json();
+        allMedicines = data;
+        displayMedicines(data);
+        updateStats(data);
+        updateAllBillMedicineDropdowns();
+    } catch (error) {
+        console.error('Error fetching medicines:', error);
+        showMessage('medicine-message', 'Error fetching medicines: ' + error.message, true);
     }
+}
 
-    // Utility functions
-    function getDaysDifference(dateString) {
-        const expiryDate = new Date(dateString);
-        const currentDate = new Date();
-        const timeDifference = expiryDate.getTime() - currentDate.getTime();
-        return Math.ceil(timeDifference / (1000 * 3600 * 24));
+function displayMedicines(medicines, targetId = 'medicine-list') {
+    const medicineList = document.getElementById(targetId);
+    medicineList.innerHTML = '';
+    if (medicines.length === 0) {
+        medicineList.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 2rem; color: #666;">No medicines found</td></tr>';
+        return;
     }
+    medicines.forEach((medicine) => {
+        const statusInfo = getExpiryStatus(medicine.expiryDate);
+        const days = getDaysDifference(medicine.expiryDate);
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td style="font-weight: 600;">${medicine.name}</td>
+            <td>${medicine.company}</td>
+            <td><span style="background: #e2e8f0; padding: 0.25rem 0.5rem; border-radius: 10px; font-weight: 600;">${medicine.quantity}</span></td>
+            <td>₹${(medicine.price || 0).toFixed(2)}</td>
+            <td>${medicine.expiryDate}</td>
+            <td>
+                <span class="status-badge ${statusInfo.class}">
+                    ${statusInfo.status}
+                </span>
+                <small style="display: block; margin-top: 0.25rem; color: #666;">
+                    ${days >= 0 ? `${days} days left` : `${Math.abs(days)} days ago`}
+                </small>
+            </td>
+        `;
+        medicineList.appendChild(tr);
+    });
+}
 
-    function getExpiryStatus(expiryDate) {
-        const days = getDaysDifference(expiryDate);
-        if (days < 0) return { status: 'Expired', class: 'status-expired' };
-        if (days <= 30) return { status: 'Expiring Soon', class: 'status-expiring' };
-        return { status: 'Valid', class: 'status-valid' };
-    }
+function updateStats(medicines) {
+    const totalMedicines = medicines.length;
+    const expiredCount = medicines.filter(m => getDaysDifference(m.expiryDate) < 0).length;
+    const expiringCount = medicines.filter(m => {
+        const days = getDaysDifference(m.expiryDate);
+        return days >= 0 && days <= 30;
+    }).length;
+    const validCount = totalMedicines - expiredCount - expiringCount;
+    document.getElementById('total-medicines').textContent = totalMedicines;
+    document.getElementById('expired-count').textContent = expiredCount;
+    document.getElementById('expiring-count').textContent = expiringCount;
+    document.getElementById('valid-count').textContent = validCount;
+}
 
-    function showMessage(elementId, message, isError = false) {
-        const element = document.getElementById(elementId);
-        element.innerHTML = `<div class="message ${isError ? 'error' : 'success'}">${message}</div>`;
-        setTimeout(() => {
-            element.innerHTML = '';
-        }, 5000);
-    }
-
-    // Medicine management functions
-    function fetchMedicines() {
-        fetch('http://localhost:8080/medicines')
-            .then(response => {
-                if (!response.ok) throw new Error('Failed to fetch medicines');
-                return response.json();
-            })
-            .then(data => {
-                allMedicines = data;
-                displayMedicines(data);
-                updateStats(data);
-            })
-            .catch(error => {
-                console.error('Error fetching medicines:', error);
-                showMessage('medicine-message', 'Error fetching medicines: ' + error.message, true);
-            });
-    }
-
-    function displayMedicines(medicines, targetId = 'medicine-list') {
-        const medicineList = document.getElementById(targetId);
-        medicineList.innerHTML = '';
-        if (medicines.length === 0) {
-            medicineList.innerHTML = '<tr><td colspan="5" style="text-align: center; padding: 2rem; color: #666;">No medicines found</td></tr>';
-            return;
-        }
-        medicines.forEach((medicine) => {
-            const statusInfo = getExpiryStatus(medicine.expiryDate);
-            const days = getDaysDifference(medicine.expiryDate);
-            const tr = document.createElement('tr');
-            tr.innerHTML = `
-                <td style="font-weight: 600;">${medicine.name}</td>
-                <td>${medicine.company}</td>
-                <td><span style="background: #e2e8f0; padding: 0.25rem 0.5rem; border-radius: 10px; font-weight: 600;">${medicine.quantity}</span></td>
-                <td>${medicine.expiryDate}</td>
-                <td>
-                    <span class="status-badge ${statusInfo.class}">
-                        ${statusInfo.status}
-                    </span>
-                    <small style="display: block; margin-top: 0.25rem; color: #666;">
-                        ${days >= 0 ? `${days} days left` : `${Math.abs(days)} days ago`}
-                    </small>
-                </td>
-            `;
-            medicineList.appendChild(tr);
-        });
-    }
-
-    function updateStats(medicines) {
-        const totalMedicines = medicines.length;
-        const expiredCount = medicines.filter(m => getDaysDifference(m.expiryDate) < 0).length;
-        const expiringCount = medicines.filter(m => {
-            const days = getDaysDifference(m.expiryDate);
-            return days >= 0 && days <= 30;
-        }).length;
-        const validCount = totalMedicines - expiredCount - expiringCount;
-        document.getElementById('total-medicines').textContent = totalMedicines;
-        document.getElementById('expired-count').textContent = expiredCount;
-        document.getElementById('expiring-count').textContent = expiringCount;
-        document.getElementById('valid-count').textContent = validCount;
-    }
-
-    // Add medicine form handler
-    document.getElementById('add-medicine-form').addEventListener('submit', function(event) {
+// Add medicine form handler
+const addMedicineForm = document.getElementById('add-medicine-form');
+if (addMedicineForm) {
+    addMedicineForm.addEventListener('submit', async function(event) {
         event.preventDefault();
         const name = document.getElementById('name').value.trim();
         const company = document.getElementById('company').value.trim();
         const quantity = parseInt(document.getElementById('quantity').value);
+        const cost = parseFloat(document.getElementById('cost').value);
         const expiryDate = document.getElementById('expiryDate').value;
-        const medicineData = { name, company, quantity, expiryDate };
-        fetch('http://localhost:8080/medicines', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(medicineData)
-        })
-        .then(response => {
+        // Use 'price' instead of 'cost' to match backend
+        const medicineData = { name, company, quantity, price: cost, expiryDate };
+        try {
+            const response = await fetch('/medicines', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(medicineData)
+            });
             if (!response.ok) throw new Error('Failed to add medicine');
-            return response.json();
-        })
-        .then(() => {
             showMessage('medicine-message', '✅ Medicine added successfully!');
-            document.getElementById('add-medicine-form').reset();
+            addMedicineForm.reset();
             fetchMedicines();
-        })
-        .catch(error => {
+        } catch (error) {
             console.error('Error adding medicine:', error);
             showMessage('medicine-message', '❌ Error adding medicine: ' + error.message, true);
-        });
+        }
     });
+}
 
-    // Companies functionality
-    function viewCompanies() {
-        fetch('http://localhost:8080/medicines')
-            .then(response => response.json())
-            .then(data => {
-                const companiesGrid = document.getElementById('companies-grid');
-                const companies = [...new Set(data.map(medicine => medicine.company))].sort();
-                companiesGrid.innerHTML = '';
-                if (companies.length === 0) {
-                    companiesGrid.innerHTML = '<div class="company-card" style="grid-column: 1/-1; text-align: center;">No companies found</div>';
-                    return;
-                }
-                companies.forEach(company => {
-                    const medicineCount = data.filter(m => m.company === company).length;
-                    const totalQuantity = data.filter(m => m.company === company).reduce((sum, m) => sum + m.quantity, 0);
-                    const companyCard = document.createElement('div');
-                    companyCard.className = 'company-card';
-                    companyCard.innerHTML = `
-                        <h3 style="color: #4a5568; margin-bottom: 0.5rem;">${company}</h3>
-                        <p style="color: #666; margin: 0.25rem 0;"><strong>Medicines:</strong> ${medicineCount}</p>
-                        <p style="color: #666; margin: 0.25rem 0;"><strong>Total Stock:</strong> ${totalQuantity}</p>
-                    `;
-                    companiesGrid.appendChild(companyCard);
-                });
-            })
-            .catch(error => {
-                console.error('Error fetching companies:', error);
-                document.getElementById('companies-grid').innerHTML = '<div class="company-card" style="grid-column: 1/-1; text-align: center; color: #e53e3e;">Error loading companies</div>';
-            });
-    }
-
-    // Expiry stock management
-    function viewExpiryStock() {
-        fetch('http://localhost:8080/medicines')
-            .then(response => response.json())
-            .then(data => {
-                const expiredMedicines = data.filter(medicine => getDaysDifference(medicine.expiryDate) < 0);
-                displayExpiryStock(expiredMedicines);
-            })
-            .catch(error => {
-                console.error('Error fetching expired medicines:', error);
-            });
-    }
-    function viewExpiringSoon() {
-        fetch('http://localhost:8080/medicines')
-            .then(response => response.json())
-            .then(data => {
-                const expiringSoon = data.filter(medicine => {
-                    const days = getDaysDifference(medicine.expiryDate);
-                    return days >= 0 && days <= 30;
-                });
-                displayExpiryStock(expiringSoon);
-            })
-            .catch(error => {
-                console.error('Error fetching expiring medicines:', error);
-            });
-    }
-    function viewValidStock() {
-        fetch('http://localhost:8080/medicines')
-            .then(response => response.json())
-            .then(data => {
-                const validMedicines = data.filter(medicine => getDaysDifference(medicine.expiryDate) > 30);
-                displayExpiryStock(validMedicines);
-            })
-            .catch(error => {
-                console.error('Error fetching valid medicines:', error);
-            });
-    }
-    function displayExpiryStock(medicines) {
-        const expiryStockList = document.getElementById('expiry-stock-list');
-        expiryStockList.innerHTML = '';
-        if (medicines.length === 0) {
-            expiryStockList.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 2rem; color: #666;">No medicines found</td></tr>';
+// Companies functionality
+async function viewCompanies() {
+    try {
+        const response = await fetch('/medicines');
+        const data = await response.json();
+        const companiesGrid = document.getElementById('companies-grid');
+        const companies = [...new Set(data.map(medicine => medicine.company))].sort();
+        companiesGrid.innerHTML = '';
+        if (companies.length === 0) {
+            companiesGrid.innerHTML = '<div class="company-card" style="grid-column: 1/-1; text-align: center;">No companies found</div>';
             return;
         }
-        medicines.forEach(medicine => {
+        companies.forEach(company => {
+            const medicineCount = data.filter(m => m.company === company).length;
+            const totalQuantity = data.filter(m => m.company === company).reduce((sum, m) => sum + m.quantity, 0);
+            const companyCard = document.createElement('div');
+            companyCard.className = 'company-card';
+            companyCard.innerHTML = `
+                <h3 style="color: #4a5568; margin-bottom: 0.5rem;">${company}</h3>
+                <p style="color: #666; margin: 0.25rem 0;"><strong>Medicines:</strong> ${medicineCount}</p>
+                <p style="color: #666; margin: 0.25rem 0;"><strong>Total Stock:</strong> ${totalQuantity}</p>
+            `;
+            companiesGrid.appendChild(companyCard);
+        });
+    } catch (error) {
+        console.error('Error fetching companies:', error);
+        document.getElementById('companies-grid').innerHTML = '<div class="company-card" style="grid-column: 1/-1; text-align: center; color: #e53e3e;">Error loading companies</div>';
+    }
+}
+
+// Expiry stock management
+async function viewExpiryStock() {
+    try {
+        const response = await fetch('/medicines');
+        const data = await response.json();
+        const expiredMedicines = data.filter(medicine => getDaysDifference(medicine.expiryDate) < 0);
+        displayExpiryStock(expiredMedicines);
+    } catch (error) {
+        console.error('Error fetching expired medicines:', error);
+    }
+}
+async function viewExpiringSoon() {
+    try {
+        const response = await fetch('/medicines');
+        const data = await response.json();
+        const expiringSoon = data.filter(medicine => {
             const days = getDaysDifference(medicine.expiryDate);
-            const statusInfo = getExpiryStatus(medicine.expiryDate);
-            const tr = document.createElement('tr');
-            tr.innerHTML = `
-                <td style="font-weight: 600;">${medicine.name}</td>
-                <td>${medicine.company}</td>
-                <td><span style="background: #e2e8f0; padding: 0.25rem 0.5rem; border-radius: 10px; font-weight: 600;">${medicine.quantity}</span></td>
-                <td>${medicine.expiryDate}</td>
-                <td style="font-weight: 600; color: ${days < 0 ? '#e53e3e' : days <= 30 ? '#dd6b20' : '#2f855a'};">
-                    ${days >= 0 ? days : Math.abs(days) + ' (expired)'}
-                </td>
-                <td>
-                    <span class="status-badge ${statusInfo.class}">
-                        ${statusInfo.status}
-                    </span>
-                </td>
-            `;
-            expiryStockList.appendChild(tr);
+            return days >= 0 && days <= 30;
         });
+        displayExpiryStock(expiringSoon);
+    } catch (error) {
+        console.error('Error fetching expiring medicines:', error);
     }
-
-    // Delete medicine functionality
-    function searchForDelete() {
-        const searchName = document.getElementById('delete-search').value.trim();
-        if (!searchName) {
-            document.getElementById('delete-results').innerHTML = '<tr><td colspan="5" style="text-align: center; padding: 2rem; color: #666;">Please enter a search term</td></tr>';
-            return;
-        }
-        fetch(`http://localhost:8080/medicines?name=${encodeURIComponent(searchName)}`)
-            .then(response => response.json())
-            .then(data => {
-                displayDeleteCandidates(data);
-            })
-            .catch(error => {
-                console.error('Error searching medicines for delete:', error);
-                document.getElementById('delete-results').innerHTML = '<tr><td colspan="5" style="text-align: center; padding: 2rem; color: #e53e3e;">Error searching medicines</td></tr>';
-            });
+}
+async function viewValidStock() {
+    try {
+        const response = await fetch('/medicines');
+        const data = await response.json();
+        const validMedicines = data.filter(medicine => getDaysDifference(medicine.expiryDate) > 30);
+        displayExpiryStock(validMedicines);
+    } catch (error) {
+        console.error('Error fetching valid medicines:', error);
     }
-    function displayDeleteCandidates(medicines) {
-        const deleteResults = document.getElementById('delete-results');
-        deleteResults.innerHTML = '';
-        if (medicines.length === 0) {
-            deleteResults.innerHTML = '<tr><td colspan="5" style="text-align: center; padding: 2rem; color: #666;">No medicines found</td></tr>';
-            return;
-        }
-        medicines.forEach((medicine) => {
-            const tr = document.createElement('tr');
-            tr.innerHTML = `
-                <td style="font-weight: 600;">${medicine.name}</td>
-                <td>${medicine.company}</td>
-                <td>${medicine.quantity}</td>
-                <td>${medicine.expiryDate}</td>
-                <td>
-                    <button class="delete-btn" onclick="deleteMedicine('${medicine.name}', '${medicine.company}')">
-                        🗑️ Delete
-                    </button>
-                </td>
-            `;
-            deleteResults.appendChild(tr);
-        });
+}
+function displayExpiryStock(medicines) {
+    const expiryStockList = document.getElementById('expiry-stock-list');
+    expiryStockList.innerHTML = '';
+    if (medicines.length === 0) {
+        expiryStockList.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 2rem; color: #666;">No medicines found</td></tr>';
+        return;
     }
-    function deleteMedicine(name, company) {
-        if (!confirm(`Are you sure you want to delete "${name}" from ${company}?`)) return;
-        fetch(`http://localhost:8080/medicines/${encodeURIComponent(name)}`, {
-            method: 'DELETE'
-        })
-        .then(response => {
-            if (!response.ok) throw new Error('Failed to delete medicine');
-            showMessage('delete-message', `✅ Medicine "${name}" deleted successfully!`);
-            searchForDelete();
-            fetchMedicines();
-        })
-        .catch(error => {
-            console.error('Error deleting medicine:', error);
-            showMessage('delete-message', `❌ Error deleting medicine: ${error.message}`, true);
-        });
-    }
-
-    // Bill management
-    function fetchAndDisplayBills() {
-        fetch('http://localhost:8080/bills')
-            .then(response => response.json())
-            .then(data => {
-                bills = data;
-                displayBills(bills);
-                updateBillStats(bills);
-            })
-            .catch(error => {
-                console.error('Error fetching bills:', error);
-            });
-    }
-
-    document.getElementById('add-bill-form').addEventListener('submit', function(event) {
-        event.preventDefault();
-        const medicineName = document.getElementById('bill-medicine').value.trim();
-        const quantity = parseInt(document.getElementById('bill-quantity').value);
-        const price = parseFloat(document.getElementById('bill-price').value);
-        const customerName = document.getElementById('customer-name').value.trim() || 'Walk-in Customer';
-        fetch(`http://localhost:8080/medicines?name=${encodeURIComponent(medicineName)}`)
-            .then(response => response.json())
-            .then(data => {
-                if (data.length === 0) throw new Error('Medicine not found in inventory');
-                const medicine = data.find(m => m.name.toLowerCase() === medicineName.toLowerCase());
-                if (!medicine) throw new Error('Exact medicine match not found');
-                if (medicine.quantity < quantity) throw new Error(`Insufficient stock. Available: ${medicine.quantity}`);
-                const billData = {
-                    medicineName,
-                    quantity,
-                    price,
-                    total: quantity * price,
-                    date: new Date().toISOString().split('T')[0],
-                    customerName
-                };
-                return fetch('http://localhost:8080/bills', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(billData)
-                });
-            })
-            .then(response => {
-                if (!response.ok) throw new Error('Failed to add bill');
-                showMessage('bill-message', '✅ Bill created successfully!');
-                document.getElementById('add-bill-form').reset();
-                fetchAndDisplayBills();
-                fetchMedicines();
-            })
-            .catch(error => {
-                console.error('Error adding bill:', error);
-                showMessage('bill-message', '❌ Error creating bill: ' + error.message, true);
-            });
+    medicines.forEach(medicine => {
+        const days = getDaysDifference(medicine.expiryDate);
+        const statusInfo = getExpiryStatus(medicine.expiryDate);
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td style="font-weight: 600;">${medicine.name}</td>
+            <td>${medicine.company}</td>
+            <td><span style="background: #e2e8f0; padding: 0.25rem 0.5rem; border-radius: 10px; font-weight: 600;">${medicine.quantity}</span></td>
+            <td>${medicine.expiryDate}</td>
+            <td style="font-weight: 600; color: ${days < 0 ? '#e53e3e' : days <= 30 ? '#dd6b20' : '#2f855a'};">
+                ${days >= 0 ? days : Math.abs(days) + ' (expired)'}
+            </td>
+            <td>
+                <span class="status-badge ${statusInfo.class}">
+                    ${statusInfo.status}
+                </span>
+            </td>
+        `;
+        expiryStockList.appendChild(tr);
     });
+}
 
-    function displayBills(billsToDisplay = bills) {
-        const billList = document.getElementById('bill-list');
-        billList.innerHTML = '';
-        if (billsToDisplay.length === 0) {
-            billList.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 2rem; color: #666;">No bills found</td></tr>';
+// Delete medicine functionality
+async function searchForDelete() {
+    const searchName = document.getElementById('delete-search').value.trim();
+    if (!searchName) {
+        document.getElementById('delete-results').innerHTML = '<tr><td colspan="5" style="text-align: center; padding: 2rem; color: #666;">Please enter a search term</td></tr>';
+        return;
+    }
+    try {
+        const response = await fetch(`/medicines?name=${encodeURIComponent(searchName)}`);
+        const data = await response.json();
+        displayDeleteCandidates(data);
+    } catch (error) {
+        console.error('Error searching medicines for delete:', error);
+        document.getElementById('delete-results').innerHTML = '<tr><td colspan="5" style="text-align: center; padding: 2rem; color: #e53e3e;">Error searching medicines</td></tr>';
+    }
+}
+function displayDeleteCandidates(medicines) {
+    const deleteResults = document.getElementById('delete-results');
+    deleteResults.innerHTML = '';
+    if (medicines.length === 0) {
+        deleteResults.innerHTML = '<tr><td colspan="5" style="text-align: center; padding: 2rem; color: #666;">No medicines found</td></tr>';
+        return;
+    }
+    medicines.forEach((medicine) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td style="font-weight: 600;">${medicine.name}</td>
+            <td>${medicine.company}</td>
+            <td>${medicine.quantity}</td>
+            <td>${medicine.expiryDate}</td>
+            <td>
+                <button class="delete-btn" onclick="deleteMedicine('${medicine.name}', '${medicine.company}')">
+                    🗑️ Delete
+                </button>
+            </td>
+        `;
+        deleteResults.appendChild(tr);
+    });
+}
+async function deleteMedicine(name, company) {
+    if (!confirm(`Are you sure you want to delete "${name}" from ${company}?`)) return;
+    try {
+        const response = await fetch(`/medicines/${encodeURIComponent(name)}`, {
+            method: 'DELETE'
+        });
+        if (!response.ok) throw new Error('Failed to delete medicine');
+        showMessage('delete-message', `✅ Medicine "${name}" deleted successfully!`);
+        searchForDelete();
+        fetchMedicines();
+    } catch (error) {
+        console.error('Error deleting medicine:', error);
+        showMessage('delete-message', `❌ Error deleting medicine: ${error.message}`, true);
+    }
+}
+
+// Bill management
+async function fetchAndDisplayBills() {
+    try {
+        const response = await fetch('/bills');
+        const data = await response.json();
+        // Defensive: if data is not an array, set bills to [] and show error if error object
+        if (Array.isArray(data)) {
+            bills = data;
+            displayBills(bills);
+            updateBillStats(bills);
+        } else if (data && data.error) {
+            showMessage('bill-message', 'Error fetching bills: ' + data.error, true);
+            bills = [];
+            displayBills(bills);
+            updateBillStats(bills);
+        } else {
+            bills = [];
+            displayBills(bills);
+            updateBillStats(bills);
+        }
+    } catch (error) {
+        console.error('Error fetching bills:', error);
+        showMessage('bill-message', 'Error fetching bills: ' + error.message, true);
+    }
+}
+
+function createMedicineDropdown(selected = "") {
+    const select = document.createElement('select');
+    select.className = 'bill-medicine-select form-group';
+    select.required = true;
+    select.innerHTML = '<option value="">Select a medicine</option>';
+    allMedicines.forEach(med => {
+        const option = document.createElement('option');
+        option.value = med.name;
+        option.textContent = `${med.name} (Stock: ${med.quantity}, ₹${(med.price || 0).toFixed(2)})`;
+        option.dataset.price = med.price || 0;
+        option.dataset.quantity = med.quantity || 0;
+        if (med.name === selected) option.selected = true;
+        select.appendChild(option);
+    });
+    return select;
+}
+
+function addBillMedicineRow() {
+    if (!allMedicines || allMedicines.length === 0) {
+        showMessage('bill-message', 'No medicines available. Please add medicines first.', true);
+        return;
+    }
+    const row = document.createElement('div');
+    row.className = 'bill-medicine-row';
+    
+    const select = createMedicineDropdown();
+    const qty = document.createElement('input');
+    qty.type = 'number';
+    qty.min = 1;
+    qty.required = true;
+    qty.placeholder = 'Quantity';
+    qty.className = 'bill-medicine-qty form-group';
+
+    const price = document.createElement('input');
+    price.type = 'number';
+    price.min = 0;
+    price.step = '0.01';
+    price.required = true;
+    price.placeholder = 'Unit Price';
+    price.className = 'bill-medicine-price form-group';
+
+    const removeBtn = document.createElement('button');
+    removeBtn.type = 'button';
+    removeBtn.textContent = 'Remove';
+    removeBtn.className = 'btn btn-danger';
+    removeBtn.onclick = () => {
+        row.remove();
+        updateBillGrandTotal();
+    };
+
+    select.addEventListener('change', function() {
+        const selectedOption = select.options[select.selectedIndex];
+        price.value = selectedOption && selectedOption.value ? selectedOption.dataset.price : '';
+        qty.max = selectedOption && selectedOption.value ? selectedOption.dataset.quantity : '';
+        updateBillGrandTotal();
+    });
+    qty.addEventListener('input', updateBillGrandTotal);
+    price.addEventListener('input', updateBillGrandTotal);
+
+    row.appendChild(select);
+    row.appendChild(qty);
+    row.appendChild(price);
+    row.appendChild(removeBtn);
+
+    document.getElementById('bill-medicines-list').appendChild(row);
+    updateBillGrandTotal();
+}
+
+function updateAllBillMedicineDropdowns() {
+    document.querySelectorAll('.bill-medicine-select').forEach(select => {
+        const currentValue = select.value;
+        select.innerHTML = '<option value="">Select a medicine</option>';
+        allMedicines.forEach(med => {
+            const option = document.createElement('option');
+            option.value = med.name;
+            option.textContent = `${med.name} (Stock: ${med.quantity}, ₹${(med.price || 0).toFixed(2)})`;
+            option.dataset.price = med.price || 0;
+            option.dataset.quantity = med.quantity || 0;
+            if (med.name === currentValue) option.selected = true;
+            select.appendChild(option);
+        });
+    });
+    updateBillGrandTotal();
+}
+
+function updateBillGrandTotal() {
+    let grandTotal = 0;
+    document.querySelectorAll('.bill-medicine-row').forEach(row => {
+        const select = row.querySelector('.bill-medicine-select');
+        const qty = row.querySelector('.bill-medicine-qty');
+        const price = row.querySelector('.bill-medicine-price');
+        const quantity = parseInt(qty.value) || 0;
+        const unitPrice = parseFloat(price.value) || 0;
+        if (select.value && quantity > 0) {
+            grandTotal += unitPrice * quantity;
+        }
+    });
+    document.getElementById('bill-grand-total').textContent = `Grand Total: ₹${grandTotal.toFixed(2)}`;
+}
+
+document.getElementById('add-bill-form').addEventListener('reset', function() {
+    setTimeout(() => {
+        document.getElementById('bill-medicines-list').innerHTML = '';
+        if (allMedicines && allMedicines.length > 0) {
+            addBillMedicineRow();
+        }
+        updateBillGrandTotal();
+    }, 0);
+});
+
+document.getElementById('add-bill-form').addEventListener('submit', async function(event) {
+    event.preventDefault();
+    const billMedicines = Array.from(document.querySelectorAll('.bill-medicine-row')).map(row => {
+        const select = row.querySelector('.bill-medicine-select');
+        const qty = row.querySelector('.bill-medicine-qty');
+        const price = row.querySelector('.bill-medicine-price');
+        const medicineName = select.value.trim();
+        const quantity = parseInt(qty.value);
+        const unitPrice = parseFloat(price.value);
+        return { medicineName, quantity, unitPrice };
+    }).filter(med => med.medicineName && med.quantity > 0);
+
+    if (billMedicines.length === 0) {
+        showMessage('bill-message', '❌ Please add at least one medicine', true);
+        return;
+    }
+
+    for (const med of billMedicines) {
+        const medicine = allMedicines.find(m => m.name.toLowerCase() === med.medicineName.toLowerCase());
+        if (!medicine) {
+            showMessage('bill-message', `❌ Medicine "${med.medicineName}" not found in inventory`, true);
             return;
         }
-        billsToDisplay.forEach(bill => {
+        if (medicine.quantity < med.quantity) {
+            showMessage('bill-message', `❌ Insufficient stock for "${med.medicineName}". Available: ${medicine.quantity}`, true);
+            return;
+        }
+    }
+
+    const customerName = document.getElementById('customer-name').value.trim() || 'Walk-in Customer';
+    const total = billMedicines.reduce((sum, med) => sum + (med.quantity * med.unitPrice), 0);
+    const billData = {
+        medicines: billMedicines,
+        total,
+        date: new Date().toISOString().split('T')[0],
+        customerName
+    };
+
+    try {
+        const response = await fetch('/bills', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(billData)
+        });
+        if (!response.ok) throw new Error('Failed to add bill');
+        showMessage('bill-message', '✅ Bill created successfully!');
+        document.getElementById('add-bill-form').reset();
+        document.getElementById('bill-medicines-list').innerHTML = '';
+        if (allMedicines && allMedicines.length > 0) {
+            addBillMedicineRow();
+        }
+        updateBillGrandTotal();
+        fetchAndDisplayBills();
+        fetchMedicines();
+    } catch (error) {
+        console.error('Error adding bill:', error);
+        showMessage('bill-message', '❌ Error creating bill: ' + error.message, true);
+    }
+});
+
+function displayBills(billsToDisplay = bills) {
+    const billList = document.getElementById('bill-list');
+    billList.innerHTML = '';
+    if (!billsToDisplay || billsToDisplay.length === 0) {
+        billList.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 2rem; color: #666;">No bills found</td></tr>';
+        return;
+    }
+    billsToDisplay.forEach((bill, index) => {
+        const billId = bill.billId || bill.id || index + 1;
+        bill.medicines.forEach((med, medIndex) => {
             const tr = document.createElement('tr');
             tr.innerHTML = `
-                <td style="font-weight: 600;">${bill.medicineName}</td>
-                <td>${bill.customerName || ''}</td>
-                <td><span style="background: #e2e8f0; padding: 0.25rem 0.5rem; border-radius: 10px; font-weight: 600;">${bill.quantity}</span></td>
-                <td>${(bill.price || bill.unitPrice || 0).toFixed(2)}</td>
-                <td style="font-weight: 600; color: #2f855a;">${(bill.total || bill.totalAmount || 0).toFixed(2)}</td>
-                <td>
-                    <div>${bill.date}</div>
-                    ${bill.time ? `<small style="color: #666;">${bill.time}</small>` : ''}
-                </td>
+                <td>${medIndex === 0 ? billId : ''}</td>
+                <td>${med.medicineName}</td>
+                <td>${medIndex === 0 ? (bill.customerName || 'Walk-in Customer') : ''}</td>
+                <td>${med.quantity}</td>
+                <td>₹${med.unitPrice.toFixed(2)}</td>
+                <td>₹${(med.quantity * med.unitPrice).toFixed(2)}</td>
+                <td>${bill.date}</td>
             `;
             billList.appendChild(tr);
         });
-    }
+    });
+}
 
-    function updateBillStats(billsArr = bills) {
-        const totalBills = billsArr.length;
-        const totalRevenue = billsArr.reduce((sum, bill) => sum + (bill.total || bill.totalAmount || 0), 0);
-        document.getElementById('total-bills').textContent = totalBills;
-        document.getElementById('total-revenue').textContent = `${totalRevenue.toFixed(2)}`;
-    }
+function updateBillStats(bills) {
+    const totalBills = bills.length;
+    const totalRevenue = bills.reduce((sum, bill) => sum + bill.total, 0);
+    document.getElementById('total-bills').textContent = totalBills;
+    document.getElementById('total-revenue').textContent = `₹${totalRevenue.toFixed(2)}`;
+}
 
-    function searchBills() {
-        const searchTerm = document.getElementById('bill-search').value.trim().toLowerCase();
-        if (!searchTerm) {
-            displayBills();
-            return;
+// Search Bills
+function searchBills() {
+    const searchTerm = document.getElementById('bill-search').value.trim().toLowerCase();
+    if (!searchTerm) {
+        displayBills(bills);
+        return;
+    }
+    const filtered = bills.filter(bill =>
+        bill.medicines.some(med => med.medicineName.toLowerCase().includes(searchTerm)) ||
+        bill.customerName.toLowerCase().includes(searchTerm)
+    );
+    displayBills(filtered);
+}
+
+function clearBillSearch() {
+    document.getElementById('bill-search').value = '';
+    displayBills(bills);
+}
+
+// Search Medicines
+function searchMedicines() {
+    const searchTerm = document.getElementById('search-name').value.trim().toLowerCase();
+    if (!searchTerm) {
+        displayMedicines(allMedicines, 'search-results');
+        return;
+    }
+    const filtered = allMedicines.filter(med =>
+        med.name.toLowerCase().includes(searchTerm)
+    );
+    displayMedicines(filtered, 'search-results');
+}
+
+function clearSearch() {
+    document.getElementById('search-name').value = '';
+    displayMedicines(allMedicines, 'search-results');
+}
+
+// Tab management
+function showTab(tabName) {
+    document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+    document.querySelectorAll('.nav-tab').forEach(tab => tab.classList.remove('active'));
+    document.getElementById(tabName).classList.add('active');
+    const navTabs = document.querySelectorAll('.nav-tab');
+    navTabs.forEach(tab => {
+        if (tab.getAttribute('onclick').includes(tabName)) tab.classList.add('active');
+    });
+    if (tabName === 'view-medicines') fetchMedicines();
+    if (tabName === 'search-bills') fetchAndDisplayBills();
+    if (tabName === 'add-bill') fetchMedicines();
+    if (tabName === 'companies') viewCompanies();
+    if (tabName === 'expiry-stock') viewExpiryStock();
+    if (tabName === 'delete-medicine') fetchMedicines();
+    if (tabName === 'search-medicines') fetchMedicines();
+}
+
+// Initialize page
+window.addEventListener('DOMContentLoaded', function() {
+    fetchMedicines().then(() => {
+        if (!document.querySelector('.bill-medicine-row')) {
+            addBillMedicineRow();
         }
-        const filteredBills = bills.filter(bill =>
-            bill.medicineName.toLowerCase().includes(searchTerm) ||
-            (bill.customerName && bill.customerName.toLowerCase().includes(searchTerm))
-        );
-        displayBills(filteredBills);
-    }
-
-    function clearBillSearch() {
-        document.getElementById('bill-search').value = '';
-        displayBills();
-    }
-
-    // Medicine Search Functionality
-    function updateMedicineSuggestions() {
-        const datalist = document.getElementById('medicine-suggestions');
-        datalist.innerHTML = '';
-        allMedicines.forEach(medicine => {
-            const option = document.createElement('option');
-            option.value = medicine.name;
-            option.textContent = `${medicine.name} (Stock: ${medicine.quantity})`;
-            datalist.appendChild(option);
-        });
-    }
-
-    function handleMedicineSearch(event) {
-        const searchTerm = event.target.value.toLowerCase();
-        const datalist = document.getElementById('medicine-suggestions');
-        datalist.innerHTML = '';
-        
-        const filteredMedicines = allMedicines.filter(medicine => 
-            medicine.name.toLowerCase().includes(searchTerm)
-        );
-
-        filteredMedicines.forEach(medicine => {
-            const option = document.createElement('option');
-            option.value = medicine.name;
-            option.textContent = `${medicine.name} (Stock: ${medicine.quantity})`;
-            datalist.appendChild(option);
-        });
-    }
-
-    // Event listeners
-    document.getElementById('search-name').addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') searchMedicines();
     });
-    document.getElementById('delete-search').addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') searchForDelete();
-    });
-    document.getElementById('bill-search').addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') searchBills();
-    });
-
-    // Medicine search event listener
-    document.getElementById('bill-medicine').addEventListener('input', handleMedicineSearch);
-
-    // Initialize page
-    document.addEventListener('DOMContentLoaded', function() {
-        fetchMedicines();
-        fetchAndDisplayBills();
-        updateMedicineSuggestions();
-        const today = new Date().toISOString().split('T')[0];
-        document.getElementById('expiryDate').setAttribute('min', today);
-    });
-</script>
+    fetchAndDisplayBills();
+    const today = new Date().toISOString().split('T')[0];
+    const expiryDateInput = document.getElementById('expiryDate');
+    if (expiryDateInput) expiryDateInput.setAttribute('min', today);
+});
+    </script>
 </body>
 </html>

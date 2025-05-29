@@ -1,9 +1,15 @@
 package models
 
-case class Bill(
-  billId: String,
+case class BillMedicine(
   medicineName: String,
   quantity: Int,
-  totalPrice: Double,
-  date: String // YYYY-MM-DD
+  unitPrice: Double
+)
+
+case class Bill(
+  billId: String,
+  medicines: List[BillMedicine],
+  total: Double,
+  date: String,          // Format: YYYY-MM-DD
+  customerName: String
 )

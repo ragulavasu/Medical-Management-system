@@ -13,19 +13,22 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import scala.util.{Success, Failure}
 import java.util.UUID
+import scala.concurrent.Future
 
 // Import models and services
 import models.{Medicine, Bill}
 import services.{MedicineService, BillService}
 
 // Case classes for API compatibility
-final case class ApiMedicine(name: String, company: String, quantity: Int, expiryDate: String)
-final case class ApiBill(medicineName: String, quantity: Int, price: Double, total: Double, date: String)
+final case class ApiMedicine(name: String, company: String, quantity: Int, price: Double, expiryDate: String)
+final case class ApiBill(medicines: List[ApiBillMedicine], total: Double, date: String, customerName: String)
+final case class ApiBillMedicine(medicineName: String, quantity: Int, unitPrice: Double)
 
 trait JsonSupport extends SprayJsonSupport with DefaultJsonProtocol {
-  implicit val apiMedicineFormat: RootJsonFormat[ApiMedicine] = jsonFormat4(ApiMedicine)
+  implicit val apiMedicineFormat: RootJsonFormat[ApiMedicine] = jsonFormat5(ApiMedicine)
   implicit val apiMedicinesFormat: RootJsonFormat[List[ApiMedicine]] = listFormat[ApiMedicine]
-  implicit val apiBillFormat: RootJsonFormat[ApiBill] = jsonFormat5(ApiBill)
+  implicit val apiBillMedicineFormat: RootJsonFormat[ApiBillMedicine] = jsonFormat3(ApiBillMedicine)
+  implicit val apiBillFormat: RootJsonFormat[ApiBill] = jsonFormat4(ApiBill)
   implicit val apiBillsFormat: RootJsonFormat[List[ApiBill]] = listFormat[ApiBill]
   implicit val stringListFormat: RootJsonFormat[List[String]] = listFormat[String]
 }
@@ -44,11 +47,16 @@ object Main extends JsonSupport {
     )
 
     def medicineToApi(medicine: Medicine): ApiMedicine = {
-      ApiMedicine(medicine.name, medicine.company, medicine.quantity, medicine.expiryDate)
+      ApiMedicine(medicine.name, medicine.company, medicine.quantity, medicine.price, medicine.expiryDate)
     }
 
     def billToApi(bill: Bill): ApiBill = {
-      ApiBill(bill.medicineName, bill.quantity, bill.totalPrice / bill.quantity, bill.totalPrice, bill.date)
+      ApiBill(
+        bill.medicines.map(m => ApiBillMedicine(m.medicineName, m.quantity, m.unitPrice)),
+        bill.total,      // <-- use .total, not .totalPrice
+        bill.date,
+        bill.customerName
+      )
     }
 
     val route: Route =
@@ -88,7 +96,7 @@ object Main extends JsonSupport {
                 entity(as[ApiMedicine]) { apiMed =>
                   try {
                     LocalDate.parse(apiMed.expiryDate)
-                    val medicine = Medicine(apiMed.name, apiMed.company, apiMed.quantity, 0.0, apiMed.expiryDate)
+                    val medicine = Medicine(apiMed.name, apiMed.company, apiMed.quantity, apiMed.price, apiMed.expiryDate)
                     onComplete(MedicineService.addMedicine(medicine)) {
                       case Success(_) =>
                         complete(StatusCodes.Created, apiMed)
@@ -122,47 +130,40 @@ object Main extends JsonSupport {
                   case Success(bills) =>
                     complete(bills.map(billToApi).toList)
                   case Failure(ex) =>
-                    complete(StatusCodes.InternalServerError, s"Error: ${ex.getMessage}")
+                    complete(StatusCodes.InternalServerError, JsObject("error" -> JsString(ex.getMessage)))
                 }
               } ~
               post {
                 entity(as[ApiBill]) { apiBill =>
-                  onComplete(MedicineService.findMedicineByName(apiBill.medicineName)) {
-                    case Success(Some(medicine)) if medicine.quantity >= apiBill.quantity =>
-                      val newQuantity = medicine.quantity - apiBill.quantity
-                      onComplete(MedicineService.updateMedicineQuantity(apiBill.medicineName, newQuantity)) {
+                  // For each medicine, check stock and update
+                  val medicineUpdates = apiBill.medicines.map { med =>
+                    MedicineService.findMedicineByName(med.medicineName).flatMap {
+                      case Some(medicine) if medicine.quantity >= med.quantity =>
+                        MedicineService.updateMedicineQuantity(med.medicineName, medicine.quantity - med.quantity)
+                      case Some(_) =>
+                        Future.failed(new Exception(s"Insufficient stock for ${med.medicineName}"))
+                      case None =>
+                        Future.failed(new Exception(s"Medicine not found: ${med.medicineName}"))
+                    }
+                  }
+                  val allUpdates = Future.sequence(medicineUpdates)
+                  onComplete(allUpdates) {
+                    case Success(_) =>
+                      val bill = Bill(
+                        billId = UUID.randomUUID().toString,
+                        medicines = apiBill.medicines.map(m => models.BillMedicine(m.medicineName, m.quantity, m.unitPrice)),
+                        total = apiBill.total,           // <-- use total, not totalPrice
+                        date = apiBill.date,
+                        customerName = apiBill.customerName
+                      )
+                      onComplete(BillService.addBill(bill)) {
                         case Success(_) =>
-                          val bill = Bill(
-                            billId = UUID.randomUUID().toString,
-                            medicineName = apiBill.medicineName,
-                            quantity = apiBill.quantity,
-                            totalPrice = apiBill.quantity * apiBill.price,
-                            date = LocalDate.now().format(DateTimeFormatter.ISO_LOCAL_DATE)
-                          )
-                          onComplete(BillService.addBill(bill)) {
-                            case Success(_) =>
-                              val responseBill = ApiBill(
-                                bill.medicineName,
-                                bill.quantity,
-                                apiBill.price,
-                                bill.totalPrice,
-                                bill.date
-                              )
-                              complete(StatusCodes.Created, responseBill)
-                            case Failure(ex) =>
-                              // Rollback medicine quantity if bill add fails
-                              MedicineService.updateMedicineQuantity(apiBill.medicineName, medicine.quantity)
-                              complete(StatusCodes.InternalServerError, s"Error adding bill: ${ex.getMessage}")
-                          }
+                          complete(StatusCodes.Created, billToApi(bill))
                         case Failure(ex) =>
-                          complete(StatusCodes.InternalServerError, s"Error updating medicine quantity: ${ex.getMessage}")
+                          complete(StatusCodes.InternalServerError, JsObject("error" -> JsString(ex.getMessage)))
                       }
-                    case Success(Some(_)) =>
-                      complete(StatusCodes.BadRequest, "Insufficient stock")
-                    case Success(None) =>
-                      complete(StatusCodes.BadRequest, "Medicine not found")
                     case Failure(ex) =>
-                      complete(StatusCodes.InternalServerError, s"Error: ${ex.getMessage}")
+                      complete(StatusCodes.BadRequest, JsObject("error" -> JsString(ex.getMessage)))
                   }
                 }
               }

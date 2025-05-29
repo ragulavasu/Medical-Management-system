@@ -35,7 +35,8 @@ object MedicineService {
   }
 
   def getAllMedicines(): Future[Seq[Medicine]] = {
-    collection.find().toFuture()
+    // Filter out documents with 'init' field (used for DB init)
+    collection.find(notEqual("init", true)).toFuture()
   }
 
   def displayMedicines(): Unit = {

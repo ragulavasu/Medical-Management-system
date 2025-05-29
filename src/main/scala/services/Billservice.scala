@@ -1,6 +1,7 @@
 package services
 
 import models.Bill
+import models.BillMedicine
 import org.mongodb.scala._
 import org.mongodb.scala.model.Filters._
 import org.bson.codecs.configuration.CodecRegistries.{fromProviders, fromRegistries}
@@ -32,7 +33,17 @@ object BillService {
   }
 
   def getAllBills(): Future[Seq[Bill]] = {
-    collection.find().toFuture()
+    // Filter: exclude documents with init: true or missing/empty billId
+    collection.find(
+      and(
+        or(
+          exists("init", false),
+          equal("init", false)
+        ),
+        exists("billId", true),
+        not(equal("billId", ""))
+      )
+    ).toFuture()
   }
 
   def searchBills(id: String): Future[Seq[Bill]] = {
