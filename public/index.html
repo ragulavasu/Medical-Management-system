@@ -445,6 +445,29 @@
             border-color: #667eea;
             box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.1);
         }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0; top: 0; width: 100%; height: 100%;
+            overflow: auto; background: rgba(0,0,0,0.4);
+        }
+        .modal-content {
+            background: #fff; margin: 10% auto; padding: 2rem; border-radius: 15px;
+            width: 100%; max-width: 400px; position: relative; box-shadow: 0 8px 40px rgba(0,0,0,0.2);
+        }
+        .close {
+            position: absolute; right: 1rem; top: 1rem; font-size: 2rem; cursor: pointer; color: #888;
+        }
+
+        .action-btn-group {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            align-items: center;
+        }
     </style>
 </head>
 <body>
@@ -716,6 +739,21 @@
         </div>
     </div>
 
+    <!-- Modal for Add Stock / Update Price -->
+    <div id="action-modal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeActionModal()">&times;</span>
+            <h2 id="modal-title"></h2>
+            <form id="modal-form" onsubmit="return false;">
+                <div id="modal-fields"></div>
+                <div class="btn-group" style="margin-top:1rem;">
+                    <button type="submit" class="btn btn-success" id="modal-submit-btn">Submit</button>
+                    <button type="button" class="btn btn-danger" onclick="closeActionModal()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <script>
 let bills = [];
 let allMedicines = [];
@@ -783,8 +821,10 @@ function displayMedicines(medicines, targetId = 'medicine-list') {
                 </small>
             </td>
             <td>
-                <button class="btn btn-success" style="margin-bottom: 0.5rem;" onclick="addStockPrompt('${medicine.name}', '${medicine.company}')">Add Stock</button><br>
-                <button class="btn btn-primary" onclick="updatePricePrompt('${medicine.name}', '${medicine.company}')">Update Price</button>
+                <div class="action-btn-group">
+                    <button class="btn btn-success" onclick="addStockPrompt('${medicine.name}', '${medicine.company}')">Add Stock</button>
+                    <button class="btn btn-primary" onclick="updatePricePrompt('${medicine.name}', '${medicine.company}')">Update Price</button>
+                </div>
             </td>
         `;
         medicineList.appendChild(tr);
@@ -1319,60 +1359,80 @@ window.addEventListener('DOMContentLoaded', function() {
     if (expiryDateInput) expiryDateInput.setAttribute('min', today);
 });
 
-// Add Stock handler
-async function addStockPrompt(name, company) {
-    const addQty = prompt(`Enter number of medicines to add for ${name} (${company}):`);
-    if (addQty === null) return;
-    const qty = parseInt(addQty);
-    if (isNaN(qty) || qty <= 0) {
-        alert('Please enter a valid positive number for quantity.');
-        return;
+let modalAction = null;
+let modalMedicineName = null;
+function openActionModal(action, name, company) {
+    modalAction = action;
+    modalMedicineName = name;
+    document.getElementById('modal-title').textContent = (action === 'addStock') ? `Add Stock for ${name}` : `Update Price for ${name}`;
+    let fieldsHtml = '';
+    if (action === 'addStock') {
+        fieldsHtml += `<label>Quantity to Add:<input type="number" id="modal-qty" min="1" required class="table-input"></label>`;
+        fieldsHtml += `<label>New Price (optional):<input type="number" id="modal-price" min="0" step="0.01" class="table-input"></label>`;
+    } else if (action === 'updatePrice') {
+        fieldsHtml += `<label>New Price:<input type="number" id="modal-price" min="0" step="0.01" required class="table-input"></label>`;
     }
-    const newPriceStr = prompt(`Enter new price for ${name} (leave blank to keep current price):`);
-    let newPrice = null;
-    if (newPriceStr !== null && newPriceStr.trim() !== '') {
-        newPrice = parseFloat(newPriceStr);
+    document.getElementById('modal-fields').innerHTML = fieldsHtml;
+    document.getElementById('action-modal').style.display = 'block';
+}
+function closeActionModal() {
+    document.getElementById('action-modal').style.display = 'none';
+    modalAction = null;
+    modalMedicineName = null;
+}
+document.getElementById('modal-form').onsubmit = async function(event) {
+    event.preventDefault();
+    if (!modalAction || !modalMedicineName) return false;
+    if (modalAction === 'addStock') {
+        const qty = parseInt(document.getElementById('modal-qty').value);
+        const priceVal = document.getElementById('modal-price').value;
+        let newPrice = null;
+        if (priceVal !== '') newPrice = parseFloat(priceVal);
+        if (isNaN(qty) || qty <= 0) {
+            alert('Please enter a valid positive number for quantity.');
+            return false;
+        }
+        if (priceVal !== '' && (isNaN(newPrice) || newPrice < 0)) {
+            alert('Please enter a valid price.');
+            return false;
+        }
+        try {
+            const response = await fetch(`/medicines/${encodeURIComponent(modalMedicineName)}/add-stock`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ quantity: qty, price: newPrice })
+            });
+            if (!response.ok) throw new Error('Failed to add stock');
+            showMessage('medicine-message', `✅ Stock updated for ${modalMedicineName}`);
+            fetchMedicines();
+            closeActionModal();
+        } catch (error) {
+            alert('Error adding stock: ' + error.message);
+        }
+    } else if (modalAction === 'updatePrice') {
+        const newPrice = parseFloat(document.getElementById('modal-price').value);
         if (isNaN(newPrice) || newPrice < 0) {
             alert('Please enter a valid price.');
-            return;
+            return false;
+        }
+        try {
+            const response = await fetch(`/medicines/${encodeURIComponent(modalMedicineName)}/update-price`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ price: newPrice })
+            });
+            if (!response.ok) throw new Error('Failed to update price');
+            showMessage('medicine-message', `✅ Price updated for ${modalMedicineName}`);
+            fetchMedicines();
+            closeActionModal();
+        } catch (error) {
+            alert('Error updating price: ' + error.message);
         }
     }
-    try {
-        const response = await fetch(`/medicines/${encodeURIComponent(name)}/add-stock`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ quantity: qty, price: newPrice })
-        });
-        if (!response.ok) throw new Error('Failed to add stock');
-        showMessage('medicine-message', `✅ Stock updated for ${name}`);
-        fetchMedicines();
-    } catch (error) {
-        alert('Error adding stock: ' + error.message);
-    }
-}
-
-// Update Price handler
-async function updatePricePrompt(name, company) {
-    const newPriceStr = prompt(`Enter new price for ${name} (${company}):`);
-    if (newPriceStr === null) return;
-    const newPrice = parseFloat(newPriceStr);
-    if (isNaN(newPrice) || newPrice < 0) {
-        alert('Please enter a valid price.');
-        return;
-    }
-    try {
-        const response = await fetch(`/medicines/${encodeURIComponent(name)}/update-price`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ price: newPrice })
-        });
-        if (!response.ok) throw new Error('Failed to update price');
-        showMessage('medicine-message', `✅ Price updated for ${name}`);
-        fetchMedicines();
-    } catch (error) {
-        alert('Error updating price: ' + error.message);
-    }
-}
+    return false;
+};
+function addStockPrompt(name, company) { openActionModal('addStock', name, company); }
+function updatePricePrompt(name, company) { openActionModal('updatePrice', name, company); }
     </script>
 </body>
 </html>
