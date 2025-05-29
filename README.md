@@ -21,7 +21,7 @@ A modern web application for managing medicines, billing, and inventory in a pha
 | ![](screenshots/view-bills.png) | ![](screenshots/search-medicine.png) | ![](screenshots/expiry-stock.png) |
 
 | Manage Companies | Mobile View |
-|------------------|-----------|-------------|
+|------------------|-----------|
 | ![](screenshots/manage-companies.png) | ![](screenshots/mobile-view.png) |
 
 ---
