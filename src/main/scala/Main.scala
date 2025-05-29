@@ -109,6 +109,40 @@ object Main extends JsonSupport {
                   }
                 }
               } ~
+              // POST /medicines/{name}/update-price
+              path(Segment / "update-price") { name =>
+                post {
+                  entity(as[JsObject]) { json =>
+                    json.fields.get("price") match {
+                      case Some(JsNumber(newPrice)) =>
+                        onComplete(MedicineService.updateMedicinePrice(name, newPrice.toDouble)) {
+                          case Success(_) => complete(StatusCodes.OK, JsObject("message" -> JsString("Price updated")))
+                          case Failure(ex) => complete(StatusCodes.InternalServerError, JsObject("error" -> JsString(ex.getMessage)))
+                        }
+                      case _ =>
+                        complete(StatusCodes.BadRequest, JsObject("error" -> JsString("Missing or invalid price")))
+                    }
+                  }
+                }
+              } ~
+              // POST /medicines/{name}/add-stock
+              path(Segment / "add-stock") { name =>
+                post {
+                  entity(as[JsObject]) { json =>
+                    val qtyOpt = json.fields.get("quantity").collect { case JsNumber(q) => q.toInt }
+                    val priceOpt = json.fields.get("price").collect { case JsNumber(p) => p.toDouble }
+                    qtyOpt match {
+                      case Some(qty) if qty > 0 =>
+                        onComplete(MedicineService.addStockAndMaybeUpdatePrice(name, qty, priceOpt)) {
+                          case Success(_) => complete(StatusCodes.OK, JsObject("message" -> JsString("Stock updated")))
+                          case Failure(ex) => complete(StatusCodes.InternalServerError, JsObject("error" -> JsString(ex.getMessage)))
+                        }
+                      case _ =>
+                        complete(StatusCodes.BadRequest, JsObject("error" -> JsString("Missing or invalid quantity")))
+                    }
+                  }
+                }
+              } ~
               delete {
                 path(Segment) { medicineName =>
                   onComplete(MedicineService.deleteMedicine(medicineName)) {

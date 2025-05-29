@@ -536,6 +536,7 @@
                             <th>Cost</th>
                             <th>Expiry Date</th>
                             <th>Status</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody id="medicine-list">
@@ -760,7 +761,7 @@ function displayMedicines(medicines, targetId = 'medicine-list') {
     const medicineList = document.getElementById(targetId);
     medicineList.innerHTML = '';
     if (medicines.length === 0) {
-        medicineList.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 2rem; color: #666;">No medicines found</td></tr>';
+        medicineList.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 2rem; color: #666;">No medicines found</td></tr>';
         return;
     }
     medicines.forEach((medicine) => {
@@ -780,6 +781,10 @@ function displayMedicines(medicines, targetId = 'medicine-list') {
                 <small style="display: block; margin-top: 0.25rem; color: #666;">
                     ${days >= 0 ? `${days} days left` : `${Math.abs(days)} days ago`}
                 </small>
+            </td>
+            <td>
+                <button class="btn btn-success" style="margin-bottom: 0.5rem;" onclick="addStockPrompt('${medicine.name}', '${medicine.company}')">Add Stock</button><br>
+                <button class="btn btn-primary" onclick="updatePricePrompt('${medicine.name}', '${medicine.company}')">Update Price</button>
             </td>
         `;
         medicineList.appendChild(tr);
@@ -1313,6 +1318,61 @@ window.addEventListener('DOMContentLoaded', function() {
     const expiryDateInput = document.getElementById('expiryDate');
     if (expiryDateInput) expiryDateInput.setAttribute('min', today);
 });
+
+// Add Stock handler
+async function addStockPrompt(name, company) {
+    const addQty = prompt(`Enter number of medicines to add for ${name} (${company}):`);
+    if (addQty === null) return;
+    const qty = parseInt(addQty);
+    if (isNaN(qty) || qty <= 0) {
+        alert('Please enter a valid positive number for quantity.');
+        return;
+    }
+    const newPriceStr = prompt(`Enter new price for ${name} (leave blank to keep current price):`);
+    let newPrice = null;
+    if (newPriceStr !== null && newPriceStr.trim() !== '') {
+        newPrice = parseFloat(newPriceStr);
+        if (isNaN(newPrice) || newPrice < 0) {
+            alert('Please enter a valid price.');
+            return;
+        }
+    }
+    try {
+        const response = await fetch(`/medicines/${encodeURIComponent(name)}/add-stock`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ quantity: qty, price: newPrice })
+        });
+        if (!response.ok) throw new Error('Failed to add stock');
+        showMessage('medicine-message', `✅ Stock updated for ${name}`);
+        fetchMedicines();
+    } catch (error) {
+        alert('Error adding stock: ' + error.message);
+    }
+}
+
+// Update Price handler
+async function updatePricePrompt(name, company) {
+    const newPriceStr = prompt(`Enter new price for ${name} (${company}):`);
+    if (newPriceStr === null) return;
+    const newPrice = parseFloat(newPriceStr);
+    if (isNaN(newPrice) || newPrice < 0) {
+        alert('Please enter a valid price.');
+        return;
+    }
+    try {
+        const response = await fetch(`/medicines/${encodeURIComponent(name)}/update-price`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ price: newPrice })
+        });
+        if (!response.ok) throw new Error('Failed to update price');
+        showMessage('medicine-message', `✅ Price updated for ${name}`);
+        fetchMedicines();
+    } catch (error) {
+        alert('Error updating price: ' + error.message);
+    }
+}
     </script>
 </body>
 </html>

@@ -121,6 +121,26 @@ object MedicineService {
   ).toFuture().map(_ => ())
 }
 
+  def updateMedicinePrice(name: String, newPrice: Double): Future[Unit] = {
+    collection.updateOne(
+      equal("name", name),
+      set("price", newPrice)
+    ).toFuture().map(_ => ())
+  }
+
+  def addStockAndMaybeUpdatePrice(name: String, addQuantity: Int, newPrice: Option[Double]): Future[Unit] = {
+    findMedicineByName(name).flatMap {
+      case Some(med) =>
+        val updates = newPrice match {
+          case Some(price) => combine(set("quantity", med.quantity + addQuantity), set("price", price))
+          case None        => set("quantity", med.quantity + addQuantity)
+        }
+        collection.updateOne(equal("name", name), updates).toFuture().map(_ => ())
+      case None =>
+        Future.failed(new Exception("Medicine not found"))
+    }
+  }
+
   def findMedicineByName(name: String): Future[Option[Medicine]] = {
     collection.find(equal("name", name)).first().toFutureOption()
   }
